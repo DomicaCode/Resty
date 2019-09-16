@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Resty.Service\Resty.Service.csproj" />
+    <ProjectReference Include="..\Resty.Model\Resty.Model.csproj" />
   </ItemGroup>
 
 </Project>

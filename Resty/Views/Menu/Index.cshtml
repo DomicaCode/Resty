@@ -3,3 +3,10 @@
 }
 
 MENU
+
+@foreach (var foodItem in ViewBag.Food)
+{
+    <div>@foodItem.Name</div>
+    <div>@foodItem.Price</div>
+    <div>@foodItem.Ingredients</div>
+}

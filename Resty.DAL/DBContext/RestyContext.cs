@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
+using Resty.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +13,7 @@ namespace Resty.DAL.DBContext
         {
         }
 
-        //public DbSet<FoodItem> FoodItem { get; set; }
+        public DbSet<FoodItem> FoodItem { get; set; }
 
-        //public DbSet<Store> Store { get; set; }
     }
 }
