@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Menu";
 }
+@model  IEnumerable<Resty.Model.Common.Models.IFoodItem>
 
 MENU
 
-@foreach (var foodItem in ViewBag.Food)
+@foreach (var foodItem in Model)
 {
     <div>@foodItem.Name</div>
     <div>@foodItem.Price</div>

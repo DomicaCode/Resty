@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Gallery";
+    Layout = "_AdminLayout";
+
+}
+@model IEnumerable<Resty.Model.Common.Models.IFoodItem>
+
+<button>Add</button>
+
+@foreach (var food in Model)
+{
+    <div>
+        <label>@food.Name</label>
+    </div>
+
+}

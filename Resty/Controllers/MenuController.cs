@@ -18,8 +18,8 @@ namespace Resty.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            ViewBag.Food = await FoodItemService.GetAllFoodItemsAsync();
-            return View();
+            var foodItems = await FoodItemService.GetAllFoodItemsAsync();
+            return View(foodItems);
         }
-    }
+    } 
 }
