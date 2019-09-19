@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode development --progress",
-    "prod": "rimraf ../wwwroot/dist && webpack --mode production --progress"
+    "build-dev": "webpack --mode development --progress",
+    "build-prod": "rimraf ../wwwroot/dist && webpack --mode production --progress"
   },
   "keywords": [],
   "author": "",
