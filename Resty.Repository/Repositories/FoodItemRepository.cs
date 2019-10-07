@@ -22,5 +22,11 @@ namespace Resty.Repository.Repositories
         {
             return await RestyContext.FoodItem.ToListAsync();
         }
+
+        public async Task AddFoodItemAsync(FoodItem model)
+        {
+            var test =  await RestyContext.FoodItem.AddAsync(model);
+            await RestyContext.SaveChangesAsync();
+        }
     }
 }

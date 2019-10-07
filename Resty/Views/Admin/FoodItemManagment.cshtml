@@ -3,14 +3,49 @@
     Layout = "_AdminLayout";
 
 }
-@model IEnumerable<Resty.Model.Common.Models.IFoodItem>
+@model Resty.Web.Models.Food.FoodItemViewModel
 
-<button>Add</button>
+<button onclick="app.main.foodItem.showAddFoodItem()"
+        class="w3-button w3-dark-grey">
+    + New Food
+</button>
 
-@foreach (var food in Model)
+@foreach (var food in ViewBag.FoodItems)
 {
     <div>
         <label>@food.Name</label>
     </div>
 
+
 }
+
+
+<form id="addFoodItemForm" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="app.main.foodItem.hideAddFoodItem()"
+                  class="w3-button w3-display-topright">&times;</span>
+            <div>
+                <label>Name</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <label>Price</label>
+                <input asp-for="Price" />
+                <span asp-validation-for="Price"></span>
+            </div>
+            <div>
+                <label>Ingredients</label>
+                <input asp-for="Ingredients" />
+                <span asp-validation-for="Ingredients"></span>
+            </div>
+            <div>
+                <label>Description</label>
+                <input asp-for="Description" />
+                <span asp-validation-for="Description"></span>
+            </div>
+        </div>
+        <button type="button" onclick="app.main.foodItem.addFoodItem()" class="w3-button w3-round w3-green w3-display-bottomright">Add</button>
+    </div>
+</form>

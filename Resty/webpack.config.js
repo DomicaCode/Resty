@@ -3,7 +3,7 @@ module.exports = {
     entry: './wwwroot/js/main.js',
     output: {
         path: path.resolve(__dirname, 'wwwroot/dev-dist'),
-        filename: 'bundle.js',
+        filename: 'app.js',
         libraryTarget: 'var',
         library: 'app'
     }

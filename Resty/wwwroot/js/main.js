@@ -1,10 +1,8 @@
-﻿import Test from "./Test";
-
-
+﻿import FoodItem from "./foodItem";
 
 class Main {
     constructor() {
-        this.test = new Test();
+        this.foodItem = new FoodItem();
     }
 }
 

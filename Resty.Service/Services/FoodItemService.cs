@@ -21,5 +21,10 @@ namespace Resty.Service.Services
         {
             return await FoodItemRepository.GetAllFoodItemsAsync();
         }
+
+        public async Task AddFoodItemAsync(FoodItem model)
+        {
+            await FoodItemRepository.AddFoodItemAsync(model);
+        }
     }
 }

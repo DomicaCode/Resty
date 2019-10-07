@@ -7,5 +7,7 @@ namespace Resty.Service.Common.Services
     public interface IFoodItemService
     {
         Task<IList<FoodItem>> GetAllFoodItemsAsync();
+
+        Task AddFoodItemAsync(FoodItem model);
     }
 }

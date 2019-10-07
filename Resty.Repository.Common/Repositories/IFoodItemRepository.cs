@@ -7,5 +7,7 @@ namespace Resty.Repository.Common.Repositories
     public interface IFoodItemRepository
     {
         Task<IList<FoodItem>> GetAllFoodItemsAsync();
+
+        Task AddFoodItemAsync(FoodItem model);
     }
 }
