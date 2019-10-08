@@ -39,6 +39,8 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "fibers": "^4.0.1",
+    "sass": "^1.3.0"
   }
 }
