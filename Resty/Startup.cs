@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
+using Castle.Core.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,10 @@ namespace Resty
             services.AddEntityFrameworkNpgsql()
                           .BuildServiceProvider();
 
+            var serviceProvider = new ServiceCollection()
+                      .AddLogging()
+                      .BuildServiceProvider();
+
             services.AddDbContext<RestyContext>(options =>
                     options.UseNpgsql(Configuration.GetValue<string>("Settings:DatabaseString")));
 
@@ -67,6 +72,10 @@ namespace Resty
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
