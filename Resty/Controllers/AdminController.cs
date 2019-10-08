@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Resty.Common;
+using Resty.Common.FilterParameters;
 using Resty.Model.Models;
 using Resty.Service.Common.Services;
 using Resty.Web.Models.Food;
@@ -16,11 +18,13 @@ namespace Resty.Web.Controllers
     {
         public IFoodItemService FoodItemService { get; }
         public IMapper Mapper { get; }
+        public IFilterFacade FilterFacade { get; }
 
-        public AdminController(IFoodItemService foodItemService, IMapper mapper)
+        public AdminController(IFoodItemService foodItemService, IMapper mapper, IFilterFacade filterFacade)
         {
             FoodItemService = foodItemService;
             Mapper = mapper;
+            FilterFacade = filterFacade;
         }
 
         public IActionResult Index()
@@ -48,11 +52,29 @@ namespace Resty.Web.Controllers
 
             var mappedModel = Mapper.Map<FoodItem>(model);
 
-            await FoodItemService.AddFoodItemAsync(mappedModel);
+            if (await FoodItemService.AddFoodItemAsync(mappedModel))
+            {
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
 
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new { success = true });
+        [HttpDelete]
+        [AllowAnonymous]
+        public async Task<IActionResult> DeleteFoodItem(Guid foodId)
+        {
+            if (foodId == null)
+            {
+                throw new ArgumentException("Id wrong", "foodId");
+            }
 
+            if (await FoodItemService.DeleteFoodItemAsync(foodId))
+            {
+
+            }
+
+            return Json(true);
         }
     }
 }

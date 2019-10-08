@@ -34,4 +34,22 @@ export default class FoodItem {
 
         }
     }
+
+    deleteFoodItem(event) {
+        let foodId = event.target.value;
+
+        $.ajax({
+            type: 'DELETE',
+            url: "/Admin/DeleteFoodItem?foodId=" + foodId,
+            dataType: "application/json",
+            success: function (data) {
+                window.location.reload();
+                console.log('yes');
+            },
+            error: function (data) {
+                window.location.reload();
+                console.log('no');
+            }
+        });
+    }
 }

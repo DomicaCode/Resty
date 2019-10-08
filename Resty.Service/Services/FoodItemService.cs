@@ -1,4 +1,5 @@
-﻿using Resty.Model.Models;
+﻿using Resty.Common.FilterParameters;
+using Resty.Model.Models;
 using Resty.Repository.Common.Repositories;
 using Resty.Service.Common.Services;
 using System;
@@ -22,9 +23,19 @@ namespace Resty.Service.Services
             return await FoodItemRepository.GetAllFoodItemsAsync();
         }
 
-        public async Task AddFoodItemAsync(FoodItem model)
+        public async Task<FoodItem> GetFoodItemAsync(IFoodItemFilterParameters filter)
         {
-            await FoodItemRepository.AddFoodItemAsync(model);
+            return await FoodItemRepository.GetFoodItemAsync(filter);
+        }
+
+        public async Task<bool> AddFoodItemAsync(FoodItem model)
+        {
+            return await FoodItemRepository.AddFoodItemAsync(model);
+        }
+
+        public async Task<bool> DeleteFoodItemAsync(Guid foodId)
+        {
+            return await FoodItemRepository.DeleteFoodItemAsync(foodId);
         }
     }
 }

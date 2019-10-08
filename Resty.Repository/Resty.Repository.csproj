@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Resty.Common\Resty.Common.csproj" />
     <ProjectReference Include="..\Resty.DAL\Resty.DAL.csproj" />
     <ProjectReference Include="..\Resty.Model\Resty.Model.csproj" />
     <ProjectReference Include="..\Resty.Repository.Common\Resty.Repository.Common.csproj" />

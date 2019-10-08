@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using Resty.Common;
+using Resty.Common.FilterParameters;
 using Resty.Repository.Common.Repositories;
 using Resty.Repository.Repositories;
 using Resty.Service.Common.Services;
@@ -22,6 +24,14 @@ namespace Resty.Infrastructure
             #region Services
 
             builder.RegisterType<FoodItemService>().As<IFoodItemService>();
+
+            #endregion
+
+            #region Filters
+
+            builder.RegisterType<FilterFacade>().As<IFilterFacade>();
+
+            builder.RegisterType<FoodItemFilterParameters>().As<IFoodItemFilterParameters>();
 
             #endregion
 

@@ -13,9 +13,14 @@
 @foreach (var food in ViewBag.FoodItems)
 {
     <div>
-        <label>@food.Name</label>
-        <small>@food.Price</small>
-        <small>@food.Description</small>
+        <div>
+            <label>@food.Name</label>
+            <small>@food.Price</small>
+            <small>@food.Description</small>
+            <label>@food.Ingredients</label>
+        </div>
+        <button class="btn btn-primary">Edit</button>
+        <button value="@food.Id" onclick="app.main.foodItem.deleteFoodItem(event)">&#10006;</button>
     </div>
 
 
