@@ -350,5 +350,3 @@ MigrationBackup/
 
 /dist/*
 /dev-dist/*
-/Resty/wwwroot/dev-dist/app.js
-/Resty/3.1.0
