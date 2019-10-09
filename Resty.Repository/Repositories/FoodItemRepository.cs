@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Resty.Common;
 using Resty.Common.FilterParameters;
 using Resty.DAL.DBContext;
@@ -13,14 +14,16 @@ namespace Resty.Repository.Repositories
 {
     public class FoodItemRepository : IFoodItemRepository
     {
-        public FoodItemRepository(RestyContext restyContext, IFilterFacade filterFacade)
+        public FoodItemRepository(RestyContext restyContext, IFilterFacade filterFacade, IMapper mapper)
         {
             RestyContext = restyContext;
             FilterFacade = filterFacade;
+            Mapper = mapper;
         }
 
         public RestyContext RestyContext { get; }
         public IFilterFacade FilterFacade { get; }
+        public IMapper Mapper { get; }
 
         public async Task<IList<FoodItem>> GetAllFoodItemsAsync()
         {
@@ -29,7 +32,7 @@ namespace Resty.Repository.Repositories
 
         public async Task<bool> AddFoodItemAsync(FoodItem model)
         {
-            var result =  await RestyContext.FoodItem.AddAsync(model);
+            var result = await RestyContext.FoodItem.AddAsync(model);
             if (result.State == EntityState.Added)
             {
                 await RestyContext.SaveChangesAsync();
@@ -65,7 +68,29 @@ namespace Resty.Repository.Repositories
             }
 
             return false;
-           
+
+        }
+
+        public async Task<bool> EditFoodItemAsync(FoodItem model)
+        {
+            if (model.Id != null && model.Id != Guid.Empty)
+            {
+                var filter = FilterFacade.Get<IFoodItemFilterParameters>();
+                filter.Id = model.Id;
+
+                var currentFoodItem = await GetFoodItemAsync(filter);
+
+                var foodItemToEdit = Mapper.Map(model, currentFoodItem);
+
+                var result = RestyContext.FoodItem.Update(foodItemToEdit);
+
+                if (result.State == EntityState.Modified)
+                {
+                    await RestyContext.SaveChangesAsync();
+                    return true;
+                }
+            }
+            return false;
         }
 
         private async Task<FoodItem> FilterFoodItem(IFoodItemFilterParameters filter)

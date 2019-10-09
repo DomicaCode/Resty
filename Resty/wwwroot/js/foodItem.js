@@ -3,6 +3,7 @@
 export default class FoodItem {
     constructor() {
         this.helpers = new Helpers();
+        this.areInputsHidden = true;
     }
 
     showAddFoodItem() {
@@ -51,5 +52,16 @@ export default class FoodItem {
                 console.log('no');
             }
         });
+    }   
+
+    toggleEditFoodItem() {
+        this.areInputsHidden = !this.areInputsHidden;
+
+        $('#foodItemForm :input').prop('hidden', this.areInputsHidden);
+        $('#foodItemForm').find('label').toggle();
+
+
+        $('#firstButtonRow').toggle();
+        $('#secondButtonRow').toggle();
     }
 }

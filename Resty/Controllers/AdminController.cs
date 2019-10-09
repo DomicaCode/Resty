@@ -60,6 +60,25 @@ namespace Resty.Web.Controllers
             return Json(new { success = false });
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> EditFoodItem(FoodItemViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Model wrong", "model");
+            }
+
+            var mappedModel = Mapper.Map<FoodItem>(model);
+
+            if (await FoodItemService.EditFoodItemAsync(mappedModel))
+            {
+                Response.StatusCode = (int)HttpStatusCode.OK;
+                return RedirectToAction("FoodItemManagment");
+            }
+            return Json(new { success = false });
+        }
+
         [HttpDelete]
         [AllowAnonymous]
         public async Task<IActionResult> DeleteFoodItem(Guid foodId)

@@ -13,14 +13,31 @@
 @foreach (var food in ViewBag.FoodItems)
 {
     <div>
-        <div>
+        <form id="foodItemForm" asp-controller="Admin" asp-action="EditFoodItem" method="post">
+            <input value="@food.Id" asp-for="Id" style="display:none" />
+
             <label>@food.Name</label>
-            <small>@food.Price</small>
-            <small>@food.Description</small>
+            <input hidden value="@food.Name" asp-for="Name" />
+
+            <label>@food.Price</label>
+            <input hidden value="@food.Price" asp-for="Price" />
+
+            <label>@food.Description</label>
+            <input hidden value="@food.Description" asp-for="Description" />
+
             <label>@food.Ingredients</label>
+            <input hidden value="@food.Ingredients" asp-for="Ingredients" />
+
+            <div id="secondButtonRow" style="display:none;">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="app.main.foodItem.toggleEditFoodItem()">Cancel</button>
+            </div>
+        </form>
+        <div id="firstButtonRow">
+            <button class="btn btn-primary" onclick="app.main.foodItem.toggleEditFoodItem()">Edit</button>
+            <button value="@food.Id" onclick="app.main.foodItem.deleteFoodItem(event)">&#10006;</button>
         </div>
-        <button class="btn btn-primary">Edit</button>
-        <button value="@food.Id" onclick="app.main.foodItem.deleteFoodItem(event)">&#10006;</button>
+
     </div>
 
 

@@ -37,5 +37,10 @@ namespace Resty.Service.Services
         {
             return await FoodItemRepository.DeleteFoodItemAsync(foodId);
         }
+
+        public async Task<bool> EditFoodItemAsync(FoodItem model)
+        {
+            return await FoodItemRepository.EditFoodItemAsync(model);
+        }
     }
 }

@@ -15,5 +15,7 @@ namespace Resty.Service.Common.Services
         Task<FoodItem> GetFoodItemAsync(IFoodItemFilterParameters filter);
 
         Task<bool> DeleteFoodItemAsync(Guid foodId);
+
+        Task<bool> EditFoodItemAsync(FoodItem model);
     }
 }
