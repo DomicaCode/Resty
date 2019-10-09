@@ -350,4 +350,3 @@ MigrationBackup/
 
 /dist/*
 /dev-dist/*
-/Resty/appsettings.Development.json
