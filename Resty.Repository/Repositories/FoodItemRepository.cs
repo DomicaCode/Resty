@@ -50,7 +50,7 @@ namespace Resty.Repository.Repositories
         {
             if (foodId != null && foodId != Guid.Empty)
             {
-                var filter = FilterFacade.Get<IFoodItemFilterParameters>();
+                var filter = FilterFacade.CreateFoodItemFilterParameters();
                 filter.Id = foodId;
 
                 var foodItemToRemove = await GetFoodItemAsync(filter);
@@ -75,7 +75,7 @@ namespace Resty.Repository.Repositories
         {
             if (model.Id != null && model.Id != Guid.Empty)
             {
-                var filter = FilterFacade.Get<IFoodItemFilterParameters>();
+                var filter = FilterFacade.CreateFoodItemFilterParameters();
                 filter.Id = model.Id;
 
                 var currentFoodItem = await GetFoodItemAsync(filter);

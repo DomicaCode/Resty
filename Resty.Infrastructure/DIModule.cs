@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Autofac.Extras.AggregateService;
 using Resty.Common;
 using Resty.Common.FilterParameters;
 using Resty.Repository.Common.Repositories;
@@ -29,7 +30,7 @@ namespace Resty.Infrastructure
 
             #region Filters
 
-            builder.RegisterType<FilterFacade>().As<IFilterFacade>();
+            builder.RegisterAggregateService<IFilterFacade>();
 
             builder.RegisterType<FoodItemFilterParameters>().As<IFoodItemFilterParameters>();
 

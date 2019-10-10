@@ -1,7 +1,9 @@
-﻿namespace Resty.Common
+﻿using Resty.Common.FilterParameters;
+
+namespace Resty.Common
 {
     public interface IFilterFacade
     {
-        TFilter Get<TFilter>();
+        IFoodItemFilterParameters CreateFoodItemFilterParameters();
     }
 }
