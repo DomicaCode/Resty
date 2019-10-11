@@ -33,12 +33,10 @@ namespace Resty.Repository.Repositories
         public async Task<bool> AddFoodItemAsync(FoodItem model)
         {
             var result = await RestyContext.FoodItem.AddAsync(model);
-            if (result.State == EntityState.Added)
-            {
-                await RestyContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
+            if (result.State != EntityState.Added) return false;
+
+            await RestyContext.SaveChangesAsync();
+            return true;
         }
 
         public async Task<FoodItem> GetFoodItemAsync(IFoodItemFilterParameters filter)
@@ -48,49 +46,38 @@ namespace Resty.Repository.Repositories
 
         public async Task<bool> DeleteFoodItemAsync(Guid foodId)
         {
-            if (foodId != null && foodId != Guid.Empty)
-            {
-                var filter = FilterFacade.CreateFoodItemFilterParameters();
-                filter.Id = foodId;
+            if (foodId == Guid.Empty) return false;
+            var filter = FilterFacade.CreateFoodItemFilterParameters();
+            filter.Id = foodId;
 
-                var foodItemToRemove = await GetFoodItemAsync(filter);
+            var foodItemToRemove = await GetFoodItemAsync(filter);
 
-                if (foodItemToRemove != null)
-                {
-                    var result = RestyContext.FoodItem.Remove(foodItemToRemove);
+            if (foodItemToRemove == null) return false;
+            var result = RestyContext.FoodItem.Remove(foodItemToRemove);
 
-                    if (result.State == EntityState.Deleted)
-                    {
-                        await RestyContext.SaveChangesAsync();
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            if (result.State != EntityState.Deleted) return false;
+            await RestyContext.SaveChangesAsync();
+            return true;
 
         }
 
         public async Task<bool> EditFoodItemAsync(FoodItem model)
         {
-            if (model.Id != null && model.Id != Guid.Empty)
-            {
-                var filter = FilterFacade.CreateFoodItemFilterParameters();
-                filter.Id = model.Id;
+            if (model.Id == Guid.Empty) return false;
 
-                var currentFoodItem = await GetFoodItemAsync(filter);
+            var filter = FilterFacade.CreateFoodItemFilterParameters();
+            filter.Id = model.Id;
 
-                var foodItemToEdit = Mapper.Map(model, currentFoodItem);
+            var currentFoodItem = await GetFoodItemAsync(filter);
 
-                var result = RestyContext.FoodItem.Update(foodItemToEdit);
+            var foodItemToEdit = Mapper.Map(model, currentFoodItem);
 
-                if (result.State == EntityState.Modified)
-                {
-                    await RestyContext.SaveChangesAsync();
-                    return true;
-                }
-            }
-            return false;
+            var result = RestyContext.FoodItem.Update(foodItemToEdit);
+
+            if (result.State != EntityState.Modified) return false;
+
+            await RestyContext.SaveChangesAsync();
+            return true;
         }
 
         private async Task<FoodItem> FilterFoodItem(IFoodItemFilterParameters filter)
@@ -110,7 +97,7 @@ namespace Resty.Repository.Repositories
                 return await context.FirstOrDefaultAsync(x => x.Price == filter.Price);
             }
 
-            return null;
+            return new FoodItem();
         }
     }
 }

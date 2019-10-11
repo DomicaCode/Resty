@@ -7,8 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Resty.Web;
 
-namespace Resty
+namespace Resty.Web
 {
     public class Program
     {

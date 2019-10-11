@@ -32,7 +32,7 @@ namespace Resty.Web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> FoodItemManagment()
+        public async Task<IActionResult> FoodItemManagement()
         {
             var foodItems = await FoodItemService.GetAllFoodItemsAsync();
 
@@ -47,7 +47,7 @@ namespace Resty.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new ArgumentException("Model wrong", "model");
+                throw new ArgumentException("Model wrong", nameof(model));
             }
 
             var mappedModel = Mapper.Map<FoodItem>(model);
@@ -66,7 +66,7 @@ namespace Resty.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                throw new ArgumentException("Model wrong", "model");
+                throw new ArgumentException("Model wrong", nameof(model));
             }
 
             var mappedModel = Mapper.Map<FoodItem>(model);
@@ -74,7 +74,7 @@ namespace Resty.Web.Controllers
             if (await FoodItemService.EditFoodItemAsync(mappedModel))
             {
                 Response.StatusCode = (int)HttpStatusCode.OK;
-                return RedirectToAction("FoodItemManagment");
+                return RedirectToAction("FoodItemManagement");
             }
             return Json(new { success = false });
         }
@@ -85,7 +85,7 @@ namespace Resty.Web.Controllers
         {
             if (foodId == null)
             {
-                throw new ArgumentException("Id wrong", "foodId");
+                throw new ArgumentException("Id wrong", nameof(foodId));
             }
 
             if (await FoodItemService.DeleteFoodItemAsync(foodId))

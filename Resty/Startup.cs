@@ -16,13 +16,19 @@ using Microsoft.Extensions.DependencyInjection;
 using Resty.DAL.DBContext;
 using Resty.Infrastructure;
 
-namespace Resty
+namespace Resty.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -40,8 +46,7 @@ namespace Resty
             services.AddEntityFrameworkNpgsql();
 
             //var serviceProvider = new ServiceCollection()
-            //          .AddLogging()
-            //          .BuildServiceProvider();
+            //    .AddLogging();
 
             services.AddDbContext<RestyContext>(options =>
                     options.UseNpgsql(Configuration.GetValue<string>("Settings:DatabaseString")));
@@ -68,13 +73,11 @@ namespace Resty
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseDeveloperExceptionPage();
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
