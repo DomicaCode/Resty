@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resty.Service.Common", "Res
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resty.Infrastructure", "Resty.Infrastructure\Resty.Infrastructure.csproj", "{27BA85D0-B301-4D32-99B2-8A83BD16B1F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST", "TEST\TEST.csproj", "{31FD9FB7-89AD-4102-B077-51DDAD683261}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,12 +90,6 @@ Global
 		{27BA85D0-B301-4D32-99B2-8A83BD16B1F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{27BA85D0-B301-4D32-99B2-8A83BD16B1F2}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
 		{27BA85D0-B301-4D32-99B2-8A83BD16B1F2}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Staging|Any CPU.ActiveCfg = Debug|Any CPU
-		{31FD9FB7-89AD-4102-B077-51DDAD683261}.Staging|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
