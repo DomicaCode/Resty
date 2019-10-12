@@ -9,13 +9,14 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace Resty.Web.Controllers
+namespace Resty.Web.Areas.Administration.Controllers
 {
-    public class AdminController : Controller
+    [Area("Administration")]
+    public class FoodItemController : Controller
     {
         #region Constructors
 
-        public AdminController(IFoodItemService foodItemService, IMapper mapper)
+        public FoodItemController(IFoodItemService foodItemService, IMapper mapper)
         {
             FoodItemService = foodItemService;
             Mapper = mapper;
@@ -25,8 +26,8 @@ namespace Resty.Web.Controllers
 
         #region Properties
 
-        private IFoodItemService FoodItemService { get; }
-        private IMapper Mapper { get; }
+        public IFoodItemService FoodItemService { get; private set; }
+        public IMapper Mapper { get; private set; }
 
         #endregion Properties
 
@@ -81,22 +82,17 @@ namespace Resty.Web.Controllers
             if (await FoodItemService.EditFoodItemAsync(mappedModel))
             {
                 Response.StatusCode = (int)HttpStatusCode.OK;
-                return RedirectToAction("FoodItemManagement");
+                return RedirectToAction("Index");
             }
             return Json(new { success = false });
         }
 
-        public async Task<IActionResult> FoodItemManagement()
+        public async Task<IActionResult> Index()
         {
             var foodItems = await FoodItemService.GetAllFoodItemsAsync();
 
             ViewBag.FoodItems = Mapper.Map<IList<FoodItemViewModel>>(foodItems);
 
-            return View();
-        }
-
-        public IActionResult Index()
-        {
             return View();
         }
 

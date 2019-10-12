@@ -20,7 +20,7 @@ export default class FoodItem {
 
             $.ajax({
                 type: 'POST',
-                url: '/Admin/AddFoodItem',
+                url: '/Administration/FoodItem/AddFoodItem',
                 data: formValue,
                 dataType: 'application/json',
                 success: function () {
@@ -40,7 +40,7 @@ export default class FoodItem {
 
         $.ajax({
             type: 'DELETE',
-            url: `/Admin/DeleteFoodItem?foodId=${foodId}`,
+            url: `/Administration/FoodItem/DeleteFoodItem?foodId=${foodId}`,
             dataType: 'application/json',
             success: function () {
                 window.location.reload();
@@ -56,10 +56,12 @@ export default class FoodItem {
     toggleEditFoodItem() {
         this.areInputsHidden = !this.areInputsHidden;
 
-        $('#foodItemForm :input').prop('hidden', this.areInputsHidden);
-        $('#foodItemForm').find('label').toggle();
+        const foodId = event.target.id;
 
-        $('#firstButtonRow').toggle();
-        $('#secondButtonRow').toggle();
+        $(`#foodItemForm-${foodId} :input`).prop('hidden', this.areInputsHidden);
+        $(`#foodItemForm-${foodId}`).find('label').toggle();
+
+        $(`#firstButtonRow-${foodId}`).toggle();
+        $(`#secondButtonRow-${foodId}`).toggle();
     }
 }

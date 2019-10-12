@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Resty.Web.Views.Shared.Components.Highlights
+namespace Resty.Web.Areas.Administration.Views.Shared.Components.AdminSideMenu
 {
-    public class HighlightsViewComponent : ViewComponent
+    public class AdminSideMenuViewComponent : ViewComponent
     {
         #region Methods
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Resty.Web.Views.Shared.Components.AdminHeader
+namespace Resty.Web.Areas.Global.Views.Shared.Components.Highlights
 {
-    public class AdminHeaderViewComponent : ViewComponent
+    public class HighlightsViewComponent : ViewComponent
     {
         #region Methods
 

@@ -13,6 +13,9 @@ namespace Resty.Web.Models
         {
             CreateMap<IFoodItem, FoodItemViewModel>().ReverseMap();
             CreateMap<FoodItem, FoodItemViewModel>().ReverseMap();
+
+            CreateMap<IFoodItemCategory, FoodItemCategoryViewModel>().ReverseMap();
+            CreateMap<FoodItemCategory, FoodItemCategoryViewModel>().ReverseMap();
         }
 
         #endregion Constructors

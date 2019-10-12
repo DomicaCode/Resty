@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Resty.DAL
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
+    public sealed class UnitOfWork : IUnitOfWork
     {
         #region Fields
 
@@ -25,8 +25,7 @@ namespace Resty.DAL
 
         #region Properties
 
-        public string Message { get; private set; } = null!;
-        public bool Success { get; private set; }
+        private bool Success { get; set; }
 
         #endregion Properties
 
@@ -39,7 +38,7 @@ namespace Resty.DAL
 
         public async Task<bool> Commit<T>(T entity) where T : class
         {
-            using (var transaction = _dbContext.Database.BeginTransaction())
+            await using (var transaction = _dbContext.Database.BeginTransaction())
             {
                 try
                 {
@@ -59,14 +58,12 @@ namespace Resty.DAL
                     Success = true;
                     // Message = Info.OperationSuccess;
                 }
-                catch (DbUpdateException ex)
+                catch (DbUpdateException)
                 {
                     // transaction.Rollback();
-                    Message = string.Format(ex.ToString());
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Message = string.Format(ex.ToString());
                     // transaction.Rollback();
                 }
             }
@@ -80,18 +77,6 @@ namespace Resty.DAL
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!_disposed)
-            {
-                if (disposing)
-                {
-                    _dbContext.Dispose();
-                }
-            }
-            _disposed = true;
-        }
-
         private void DetachAll()
         {
             foreach (var dbEntityEntry in _dbContext.ChangeTracker.Entries())
@@ -101,6 +86,18 @@ namespace Resty.DAL
                     dbEntityEntry.State = EntityState.Detached;
                 }
             }
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
+            }
+            _disposed = true;
         }
 
         #endregion Methods

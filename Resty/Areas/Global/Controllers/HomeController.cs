@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Resty.Web.Controllers
+namespace Resty.Web.Areas.Global.Controllers
 {
-    public class GalleryController : Controller
+    [Area("Global")]
+    public class HomeController : Controller
     {
         #region Methods
 

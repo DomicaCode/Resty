@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Resty.Common;
-using Resty.DAL;
 using Resty.DAL.DBContext;
 using Resty.Model.Common.Models;
 using Resty.Repository.Common;
@@ -19,25 +18,23 @@ namespace Resty.Repository
 
         private readonly RestyContext _context;
         private readonly DbSet<TEntity> _dbSet;
-        private readonly IUnitOfWork _uow;
 
         #endregion Fields
 
         #region Constructors
 
-        public BaseRepository(RestyContext context, IUnitOfWork unitOfWork, IMapper mapper)
+        protected BaseRepository(RestyContext context, IMapper mapper)
         {
             Mapper = mapper;
             _context = context;
             _dbSet = context.Set<TEntity>();
-            _uow = unitOfWork;
         }
 
         #endregion Constructors
 
         #region Properties
 
-        public IMapper Mapper { get; }
+        private IMapper Mapper { get; }
 
         #endregion Properties
 

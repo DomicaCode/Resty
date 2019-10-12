@@ -6,11 +6,11 @@ using Resty.Repository.Common.Repositories;
 
 namespace Resty.Repository.Repositories
 {
-    public class FoodItemRepository : BaseRepository<FoodItem, GenericFilter>, IFoodItemRepository
+    public class FoodItemCategoryRepository : BaseRepository<FoodItemCategory, GenericFilter>, IFoodItemCategoryRepository
     {
         #region Constructors
 
-        public FoodItemRepository(
+        public FoodItemCategoryRepository(
             RestyContext context,
             IMapper mapper) : base(context, mapper)
         {

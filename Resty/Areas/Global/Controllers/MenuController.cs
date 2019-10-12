@@ -2,8 +2,9 @@
 using Resty.Service.Common.Services;
 using System.Threading.Tasks;
 
-namespace Resty.Web.Controllers
+namespace Resty.Web.Areas.Global.Controllers
 {
+    [Area("Global")]
     public class MenuController : Controller
     {
         #region Constructors

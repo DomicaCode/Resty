@@ -65,7 +65,7 @@ namespace Resty.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute("default", "{area=Global}/{controller=Home}/{action=Index}/{id?}");
             });
         }
 
@@ -87,7 +87,8 @@ namespace Resty.Web
             services.AddDbContext<RestyContext>(options =>
                     options.UseNpgsql(Configuration.GetValue<string>("Settings:DatabaseString")));
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                .AddRazorRuntimeCompilation();
             services.AddRazorPages();
 
             services.AddAutoMapper(typeof(Startup));
