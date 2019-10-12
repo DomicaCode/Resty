@@ -26,8 +26,8 @@ namespace Resty.Web.Areas.Administration.Controllers
 
         #region Properties
 
-        public IFoodItemService FoodItemService { get; private set; }
-        public IMapper Mapper { get; private set; }
+        private IFoodItemService FoodItemService { get; set; }
+        private IMapper Mapper { get; set; }
 
         #endregion Properties
 

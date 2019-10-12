@@ -6,6 +6,7 @@ using Resty.Service.Common.Services;
 using Resty.Web.Models.Food;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -89,7 +90,8 @@ namespace Resty.Web.Areas.Administration.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var foodItemCategories = await FoodItemCategoryService.GetAllFoodItemCategoriesAsync();
+            var foodItemCategories = (await FoodItemCategoryService.GetAllFoodItemCategoriesAsync())
+                .OrderBy(x => x.SortOrder).ToList();
 
             ViewBag.FoodItemCategories = Mapper.Map<IList<FoodItemCategoryViewModel>>(foodItemCategories);
 
