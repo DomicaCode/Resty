@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Resty.Controllers
+namespace Resty.Web.Controllers
 {
     public class HomeController : Controller
     {
+        #region Methods
+
         public IActionResult Index()
         {
             return View();
         }
+
+        #endregion Methods
     }
 }

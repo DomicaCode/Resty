@@ -1,46 +1,82 @@
-﻿using Resty.Common.FilterParameters;
+﻿using Resty.Common;
 using Resty.Model.Models;
 using Resty.Repository.Common.Repositories;
 using Resty.Service.Common.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Resty.Service.Services
 {
     public class FoodItemService : IFoodItemService
     {
+        #region Constructors
+
         public FoodItemService(IFoodItemRepository foodItemRepository)
         {
             FoodItemRepository = foodItemRepository;
         }
 
-        public IFoodItemRepository FoodItemRepository { get; }
+        #endregion Constructors
 
-        public async Task<IList<FoodItem>> GetAllFoodItemsAsync()
-        {
-            return await FoodItemRepository.GetAllFoodItemsAsync();
-        }
+        #region Properties
 
-        public async Task<FoodItem> GetFoodItemAsync(IFoodItemFilterParameters filter)
-        {
-            return await FoodItemRepository.GetFoodItemAsync(filter);
-        }
+        private IFoodItemRepository FoodItemRepository { get; }
 
+        #endregion Properties
+
+        #region Methods
+
+        /// <summary>
+        /// Adds Food Item Async
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<bool> AddFoodItemAsync(FoodItem model)
         {
-            return await FoodItemRepository.AddFoodItemAsync(model);
+            return await FoodItemRepository.InsertAsync(model);
         }
 
+        /// <summary>
+        /// Deletes food item async
+        /// </summary>
+        /// <param name="foodId"></param>
+        /// <returns></returns>
         public async Task<bool> DeleteFoodItemAsync(Guid foodId)
         {
-            return await FoodItemRepository.DeleteFoodItemAsync(foodId);
+            await FoodItemRepository.DeleteAsync(foodId);
+            return await FoodItemRepository.DeleteAsync(foodId);
         }
 
+        /// <summary>
+        /// Edits food item async
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public async Task<bool> EditFoodItemAsync(FoodItem model)
         {
-            return await FoodItemRepository.EditFoodItemAsync(model);
+            return await FoodItemRepository.EditAsync(model);
         }
+
+        /// <summary>
+        /// Gets all food items async
+        /// </summary>
+        /// <returns></returns>
+        public async Task<IList<FoodItem>> GetAllFoodItemsAsync()
+        {
+            return await FoodItemRepository.GetAllAsync();
+        }
+
+        /// <summary>
+        /// Gets filtered food item async
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public async Task<FoodItem> GetFoodItemAsync(GenericFilter filter)
+        {
+            return await FoodItemRepository.GetAsync(filter);
+        }
+
+        #endregion Methods
     }
 }

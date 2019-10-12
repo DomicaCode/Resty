@@ -1,4 +1,4 @@
-﻿import FoodItem from "./foodItem";
+﻿import FoodItem from './foodItem';
 
 class Main {
     constructor() {

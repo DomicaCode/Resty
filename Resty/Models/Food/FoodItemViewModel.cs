@@ -1,21 +1,24 @@
 ﻿using Resty.Web.Models.Generic;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Resty.Web.Models.Food
 {
     public class FoodItemViewModel : BaseViewModel
     {
+        #region Properties
+
         [Required]
-        public string Name { get; set; }
+        public string Description { get; set; } = null!;
+
+        [Required]
+        public string Ingredients { get; set; } = null!;
+
+        [Required]
+        public string Name { get; set; } = null!;
+
         [Required]
         public decimal Price { get; set; }
-        [Required]
-        public string Description { get; set; }
-        [Required]
-        public string Ingredients { get; set; }
+
+        #endregion Properties
     }
 }

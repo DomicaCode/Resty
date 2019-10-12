@@ -1,45 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Resty.Common;
-using Resty.Common.FilterParameters;
 using Resty.Model.Models;
 using Resty.Service.Common.Services;
 using Resty.Web.Models.Food;
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Resty.Web.Controllers
 {
     public class AdminController : Controller
     {
-        public IFoodItemService FoodItemService { get; }
-        public IMapper Mapper { get; }
-        public IFilterFacade FilterFacade { get; }
+        #region Constructors
 
-        public AdminController(IFoodItemService foodItemService, IMapper mapper, IFilterFacade filterFacade)
+        public AdminController(IFoodItemService foodItemService, IMapper mapper)
         {
             FoodItemService = foodItemService;
             Mapper = mapper;
-            FilterFacade = filterFacade;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        #endregion Constructors
 
-        public async Task<IActionResult> FoodItemManagement()
-        {
-            var foodItems = await FoodItemService.GetAllFoodItemsAsync();
+        #region Properties
 
-            ViewBag.FoodItems = Mapper.Map<IList<FoodItemViewModel>>(foodItems);
+        private IFoodItemService FoodItemService { get; }
+        private IMapper Mapper { get; }
 
-            return View();
-        }
+        #endregion Properties
+
+        #region Methods
 
         [HttpPost]
         [AllowAnonymous]
@@ -58,6 +49,22 @@ namespace Resty.Web.Controllers
                 return Json(new { success = true });
             }
             return Json(new { success = false });
+        }
+
+        [HttpDelete]
+        [AllowAnonymous]
+        public async Task<IActionResult> DeleteFoodItem(Guid foodId)
+        {
+            if (foodId == null)
+            {
+                throw new ArgumentException("Id wrong", nameof(foodId));
+            }
+
+            if (await FoodItemService.DeleteFoodItemAsync(foodId))
+            {
+            }
+
+            return Json(true);
         }
 
         [HttpPost]
@@ -79,21 +86,20 @@ namespace Resty.Web.Controllers
             return Json(new { success = false });
         }
 
-        [HttpDelete]
-        [AllowAnonymous]
-        public async Task<IActionResult> DeleteFoodItem(Guid foodId)
+        public async Task<IActionResult> FoodItemManagement()
         {
-            if (foodId == null)
-            {
-                throw new ArgumentException("Id wrong", nameof(foodId));
-            }
+            var foodItems = await FoodItemService.GetAllFoodItemsAsync();
 
-            if (await FoodItemService.DeleteFoodItemAsync(foodId))
-            {
+            ViewBag.FoodItems = Mapper.Map<IList<FoodItemViewModel>>(foodItems);
 
-            }
-
-            return Json(true);
+            return View();
         }
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        #endregion Methods
     }
 }

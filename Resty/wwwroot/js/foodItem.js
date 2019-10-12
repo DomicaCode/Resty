@@ -1,4 +1,4 @@
-﻿import Helpers from "./helpers";
+﻿import Helpers from './helpers';
 
 export default class FoodItem {
     constructor() {
@@ -16,50 +16,48 @@ export default class FoodItem {
 
     addFoodItem() {
         if ($('#addFoodItemForm').valid()) {
-        let formValue = this.helpers.getModel('#addFoodItemForm');
+            const formValue = this.helpers.getModel('#addFoodItemForm');
 
-        $.ajax({
-            type: 'POST',
-            url: "/Admin/AddFoodItem",
-            data: formValue,
-            dataType: "application/json",
-            success: function (data) {
-                window.location.reload();
-                console.log('yes');
-            },
-            error: function (data) {
-                window.location.reload();
-                console.log('no');
-            }
-        });
-
+            $.ajax({
+                type: 'POST',
+                url: '/Admin/AddFoodItem',
+                data: formValue,
+                dataType: 'application/json',
+                success: function () {
+                    window.location.reload();
+                    console.log('yes');
+                },
+                error: function () {
+                    window.location.reload();
+                    console.log('no');
+                }
+            });
         }
     }
 
     deleteFoodItem(event) {
-        let foodId = event.target.value;
+        const foodId = event.target.value;
 
         $.ajax({
             type: 'DELETE',
-            url: "/Admin/DeleteFoodItem?foodId=" + foodId,
-            dataType: "application/json",
-            success: function (data) {
+            url: `/Admin/DeleteFoodItem?foodId=${foodId}`,
+            dataType: 'application/json',
+            success: function () {
                 window.location.reload();
                 console.log('yes');
             },
-            error: function (data) {
+            error: function () {
                 window.location.reload();
                 console.log('no');
             }
         });
-    }   
+    }
 
     toggleEditFoodItem() {
         this.areInputsHidden = !this.areInputsHidden;
 
         $('#foodItemForm :input').prop('hidden', this.areInputsHidden);
         $('#foodItemForm').find('label').toggle();
-
 
         $('#firstButtonRow').toggle();
         $('#secondButtonRow').toggle();

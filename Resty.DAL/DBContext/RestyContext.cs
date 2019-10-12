@@ -1,19 +1,22 @@
-﻿using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Resty.Model.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Resty.DAL.DBContext
 {
     public class RestyContext : DbContext
     {
+        #region Constructors
+
         public RestyContext(DbContextOptions options) : base(options)
         {
         }
 
+        #endregion Constructors
+
+        #region Properties
+
         public DbSet<FoodItem> FoodItem { get; set; }
 
+        #endregion Properties
     }
 }

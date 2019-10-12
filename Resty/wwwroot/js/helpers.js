@@ -6,7 +6,7 @@
         const formData = $(formSelector).serializeArray();
 
         return formData.reduce(function (result, curr) {
-            if (curr.name.startsWith("__")) {
+            if (curr.name.startsWith('__')) {
                 return result;
             }
 

@@ -1,13 +1,13 @@
-﻿using System;
-
-namespace Resty.Model.Common.Models
+﻿namespace Resty.Model.Common.Models
 {
-    public interface IFoodItem
+    public interface IFoodItem : IBaseModel
     {
+        #region Properties
+
         string Description { get; set; }
-        Guid Id { get; set; }
         string Ingredients { get; set; }
-        string Name { get; set; }
         decimal Price { get; set; }
+
+        #endregion Properties
     }
 }

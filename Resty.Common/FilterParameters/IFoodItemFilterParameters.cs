@@ -1,11 +1,12 @@
-﻿using System;
-
-namespace Resty.Common.FilterParameters
+﻿namespace Resty.Common.FilterParameters
 {
-    public interface IFoodItemFilterParameters
+    public interface IFoodItemFilterParameters : IGenericFilter
+
     {
-        Guid? Id { get; set; }
-        string Name { get; set; }
+        #region Properties
+
         decimal? Price { get; set; }
+
+        #endregion Properties
     }
 }
