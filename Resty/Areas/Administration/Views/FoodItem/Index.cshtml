@@ -2,7 +2,10 @@
     ViewData["Title"] = "Gallery";
     Layout = "_AdminLayout";
 
+    var foodItemCategories = (IEnumerable<SelectListItem>)ViewBag.FoodItemCategories;
+
 }
+@using System.Collections
 @model Resty.Web.Models.Food.FoodItemViewModel
 
 <button onclick="app.main.foodItem.showAddFoodItem()"
@@ -10,6 +13,9 @@
     + New Food
 </button>
 
+@{
+    var categoryList = foodItemCategories as SelectListItem[] ?? foodItemCategories.ToArray();
+}
 @foreach (var food in ViewBag.FoodItems)
 {
     if (food != null)
@@ -29,6 +35,9 @@
 
                 <label>@food.Ingredients</label>
                 <input hidden value="@food.Ingredients" asp-for="Ingredients" />
+                
+                <label>Category:</label>
+                <label>@categoryList.First(x=> x.Value == food.FoodItemCategoryId.ToString()).Text</label>
 
                 <div id="secondButtonRow-@food.Id" style="display:none;">
                     <button type="submit">Submit</button>
@@ -73,6 +82,27 @@
                 <input asp-for="Description" />
                 <span asp-validation-for="Description"></span>
             </div>
+            @if (categoryList.Any())
+            {
+                <div>
+                    <label>Food Category</label>
+                    <select asp-for="FoodItemCategoryId" asp-items="foodItemCategories"></select>
+                    <span asp-validation-for="FoodItemCategoryId"></span>
+                </div>
+
+            }
+            else
+            {
+                <div>
+                    <label>Food Category</label>
+                    <input type="hidden" asp-for="FoodItemCategoryId" />
+                    <a type="button" asp-area="Administration" asp-controller="FoodItemCategory" asp-action="Index">You need to add a category TODO</a>
+                    <div>
+                        <span asp-validation-for="FoodItemCategoryId"></span>
+
+                    </div>
+                </div>
+            }
         </div>
         <button type="button" onclick="app.main.foodItem.addFoodItem()" class="w3-button w3-round w3-green w3-display-bottomright">Add</button>
     </div>

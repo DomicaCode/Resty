@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Resty.Model.Models;
 using Resty.Service.Common.Services;
 using Resty.Web.Models.Food;
@@ -16,9 +17,10 @@ namespace Resty.Web.Areas.Administration.Controllers
     {
         #region Constructors
 
-        public FoodItemController(IFoodItemService foodItemService, IMapper mapper)
+        public FoodItemController(IFoodItemService foodItemService, IFoodItemCategoryService foodItemCategoryService, IMapper mapper)
         {
             FoodItemService = foodItemService;
+            FoodItemCategoryService = foodItemCategoryService;
             Mapper = mapper;
         }
 
@@ -26,6 +28,7 @@ namespace Resty.Web.Areas.Administration.Controllers
 
         #region Properties
 
+        private IFoodItemCategoryService FoodItemCategoryService { get; set; }
         private IFoodItemService FoodItemService { get; set; }
         private IMapper Mapper { get; set; }
 
@@ -90,7 +93,9 @@ namespace Resty.Web.Areas.Administration.Controllers
         public async Task<IActionResult> Index()
         {
             var foodItems = await FoodItemService.GetAllFoodItemsAsync();
+            var foodItemCategories = await FoodItemCategoryService.GetAllFoodItemCategoriesAsync();
 
+            ViewBag.FoodItemCategories = new SelectList(foodItemCategories, "Id", "Name");
             ViewBag.FoodItems = Mapper.Map<IList<FoodItemViewModel>>(foodItems);
 
             return View();

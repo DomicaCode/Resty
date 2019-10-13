@@ -1,4 +1,6 @@
-﻿using Resty.Web.Models.Generic;
+﻿using Newtonsoft.Json;
+using Resty.Web.Models.Generic;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Resty.Web.Models.Food
@@ -9,6 +11,9 @@ namespace Resty.Web.Models.Food
 
         [Required]
         public string Description { get; set; } = null!;
+
+        [Required(ErrorMessage = "You need to select a food category!")]
+        public Guid? FoodItemCategoryId { get; set; }
 
         [Required]
         public string Ingredients { get; set; } = null!;

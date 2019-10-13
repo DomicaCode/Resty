@@ -15,6 +15,9 @@ export default class FoodItem {
     }
 
     addFoodItem() {
+        const form = $('#addFoodItemForm');
+        form.data('validator').settings.ignore = '';
+
         if ($('#addFoodItemForm').valid()) {
             const formValue = this.helpers.getModel('#addFoodItemForm');
 
@@ -24,12 +27,12 @@ export default class FoodItem {
                 data: formValue,
                 dataType: 'application/json',
                 success: function () {
-                    window.location.reload();
                     console.log('yes');
+                    window.location.reload();
                 },
                 error: function () {
-                    window.location.reload();
                     console.log('no');
+                    window.location.reload();
                 }
             });
         }
