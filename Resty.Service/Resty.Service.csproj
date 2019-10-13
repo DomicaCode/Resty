@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Resty.Service.Common\Resty.Service.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Maintenance\" />
-  </ItemGroup>
-
 </Project>
