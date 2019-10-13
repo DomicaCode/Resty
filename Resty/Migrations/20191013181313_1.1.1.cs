@@ -8,19 +8,10 @@ namespace Resty.Web.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<decimal>(
-                name: "Test",
-                table: "FoodItem",
-                type: "numeric",
-                nullable: false,
-                defaultValue: 0m);
         }
 
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Test",
-                table: "FoodItem");
         }
 
         #endregion Methods
