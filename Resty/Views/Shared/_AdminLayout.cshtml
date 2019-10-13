@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Resty</title>
+
+    <environment include="Development,Staging">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/w3/w3.css">
+        <link rel="stylesheet" href="~/css/app.css" />
+    </environment>
+    <environment exclude="Development">
+
+    </environment>
+</head>
+<body>
+    @await Component.InvokeAsync("AdminHeader")
+    @await Component.InvokeAsync("AdminSideMenu")
+    <div class="container">
+        <div class="content mt-3">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - Resty
+            </div>
+        </footer>
+    </div>
+    <environment include="Development,Staging">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="~/dev-dist/app.js" asp-append-version="true"></script>
+    </environment>
+
+@RenderSection("Scripts", required: false)
+</body>
+</html>

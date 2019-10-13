@@ -1,7 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Configurations>Debug;Release;Staging</Configurations>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,8 +12,14 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.4.0" />
     <PackageReference Include="Autofac.Extras.AggregateService" Version="4.1.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resty.Common\Resty.Common.csproj" />
+    <ProjectReference Include="..\Resty.Repository\Resty.Repository.csproj" />
+    <ProjectReference Include="..\Resty.Service\Resty.Service.csproj" />
   </ItemGroup>
 
 </Project>

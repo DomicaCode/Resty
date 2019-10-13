@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Gallery";
+    Layout = "_AdminLayout";
+
+}
+@model Resty.Web.Models.Food.FoodItemViewModel
+
+<button onclick="app.main.foodItem.showAddFoodItem()"
+        class="w3-button w3-dark-grey">
+    + New Food
+</button>
+
+@foreach (var food in ViewBag.FoodItems)
+{
+    if (food != null)
+    {
+        <div>
+            <form id="foodItemForm-@food.Id" asp-area="Administration" asp-controller="FoodItem" asp-action="EditFoodItem" method="post">
+                <input value="@food.Id" asp-for="Id" style="display:none" />
+
+                <label>@food.Name</label>
+                <input hidden value="@food.Name" asp-for="Name" />
+
+                <label>@food.Price</label>
+                <input hidden value="@food.Price" asp-for="Price" />
+
+                <label>@food.Description</label>
+                <input hidden value="@food.Description" asp-for="Description" />
+
+                <label>@food.Ingredients</label>
+                <input hidden value="@food.Ingredients" asp-for="Ingredients" />
+
+                <div id="secondButtonRow-@food.Id" style="display:none;">
+                    <button type="submit">Submit</button>
+                    <button type="button" id="@food.Id" onclick="app.main.foodItem.toggleEditFoodItem()">Cancel</button>
+                </div>
+            </form>
+            <div id="firstButtonRow-@food.Id">
+                <button class="btn btn-primary" id="@food.Id" onclick="app.main.foodItem.toggleEditFoodItem()">Edit</button>
+                <button value="@food.Id" onclick="app.main.foodItem.deleteFoodItem(event)">&#10006;</button>
+            </div>
+
+        </div>
+
+
+    }
+
+}
+
+
+<form id="addFoodItemForm" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="app.main.foodItem.hideAddFoodItem()"
+                  class="w3-button w3-display-topright">&times;</span>
+            <div>
+                <label>Name</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div>
+                <label>Price</label>
+                <input asp-for="Price" />
+                <span asp-validation-for="Price"></span>
+            </div>
+            <div>
+                <label>Ingredients</label>
+                <input asp-for="Ingredients" />
+                <span asp-validation-for="Ingredients"></span>
+            </div>
+            <div>
+                <label>Description</label>
+                <input asp-for="Description" />
+                <span asp-validation-for="Description"></span>
+            </div>
+        </div>
+        <button type="button" onclick="app.main.foodItem.addFoodItem()" class="w3-button w3-round w3-green w3-display-bottomright">Add</button>
+    </div>
+</form>
