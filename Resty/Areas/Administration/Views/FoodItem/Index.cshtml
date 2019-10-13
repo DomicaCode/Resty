@@ -38,7 +38,7 @@
                 
                 <label>Category:</label>
                 <label>@categoryList.First(x=> x.Value == food.FoodItemCategoryId.ToString()).Text</label>
-                <select id="foodCategoriesSelect" asp-for="FoodItemCategoryId" asp-items="categoryList" style="display:none"></select>
+                <select id="foodCategoriesSelect-@food.Id" asp-for="FoodItemCategoryId" asp-items="categoryList" style="display:none"></select>
 
                 <div id="secondButtonRow-@food.Id" style="display:none;">
                     <button type="submit">Submit</button>

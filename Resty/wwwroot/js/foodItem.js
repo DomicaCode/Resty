@@ -61,7 +61,7 @@ export default class FoodItem {
 
         const foodId = event.target.id;
 
-        $('#foodCategoriesSelect').toggle();
+        $(`#foodCategoriesSelect-${foodId}`).toggle();
 
         $(`#foodItemForm-${foodId} :input`).prop('hidden', this.areInputsHidden);
         $(`#foodItemForm-${foodId}`).find('label').toggle();
