@@ -1,4 +1,5 @@
 ﻿using Resty.Model.Common.Models;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Resty.Model.Models
@@ -7,7 +8,13 @@ namespace Resty.Model.Models
     public class FoodItem : BaseModel, IFoodItem
     {
         #region Properties
+
         public string Description { get; set; } = null!;
+
+        [ForeignKey("FoodItemCategoryId")]
+        public FoodItemCategory FoodItemCategory { get; set; } = null!;
+
+        public Guid FoodItemCategoryId { get; set; }
         public string Ingredients { get; set; } = null!;
         public decimal Price { get; set; }
 

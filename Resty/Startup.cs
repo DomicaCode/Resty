@@ -40,7 +40,7 @@ namespace Resty.Web
         #region Methods
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RestyContext context)
         {
             if (env.EnvironmentName == "Development")
             {
@@ -62,6 +62,8 @@ namespace Resty.Web
             app.UseRouting();
 
             //app.UseAuthorization();
+
+            context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {
@@ -85,7 +87,7 @@ namespace Resty.Web
             //    .AddLogging();
 
             services.AddDbContext<RestyContext>(options =>
-                    options.UseNpgsql(Configuration.GetValue<string>("Settings:DatabaseString")));
+                    options.UseNpgsql(Configuration.GetValue<string>("Settings:DatabaseString"), b => b.MigrationsAssembly("Resty.Web")));
 
             services.AddControllersWithViews()
                 .AddRazorRuntimeCompilation();
