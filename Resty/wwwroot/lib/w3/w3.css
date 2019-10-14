@@ -259,7 +259,7 @@ a {
     }
 
 .w3-striped tbody tr:nth-child(even) {
-    background-color: #f1f1f1
+    background-color: #eaf3fb
 }
 
 .w3-table-all tr:nth-child(odd) {
@@ -271,7 +271,7 @@ a {
 }
 
 .w3-hoverable tbody tr:hover, .w3-ul.w3-hoverable li:hover {
-    background-color: #ccc
+    background-color: #d9ebff
 }
 
 .w3-centered tr th, .w3-centered tr td {
@@ -1364,7 +1364,7 @@ a {
 
 .w3-blue, .w3-hover-blue:hover {
     color: #fff !important;
-    background-color: #2196F3 !important
+    background-color: #57b5ff !important
 }
 
 .w3-light-blue, .w3-hover-light-blue:hover {

@@ -39,7 +39,7 @@ export default class FoodItem {
     }
 
     deleteFoodItem(event) {
-        const foodId = event.target.value;
+        const foodId = event.target.id;
 
         $.ajax({
             type: 'DELETE',

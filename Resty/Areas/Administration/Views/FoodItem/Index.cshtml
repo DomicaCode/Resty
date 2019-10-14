@@ -3,24 +3,46 @@
     Layout = "_AdminLayout";
 
     var foodItemCategories = (IEnumerable<SelectListItem>)ViewBag.FoodItemCategories;
+    var categoryList = foodItemCategories as SelectListItem[] ?? foodItemCategories.ToArray();
 
 }
 @using System.Collections
 @model Resty.Web.Models.Food.FoodItemViewModel
 
 <button onclick="app.main.foodItem.showAddFoodItem()"
-        class="w3-button w3-dark-grey">
+        class="w3-button w3-blue-gray w3-right">
     + New Food
 </button>
 
-@{
-    var categoryList = foodItemCategories as SelectListItem[] ?? foodItemCategories.ToArray();
-}
-@foreach (var food in ViewBag.FoodItems)
-{
-    if (food != null)
+<table class="w3-table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
+    <thead>
+        <tr class="w3-blue">
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Ingredients</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var food in ViewBag.FoodItems)
     {
-        <div>
+        if (food != null)
+        {
+            <tr id="foodForm-@food.Id">
+                <td>@food.Name</td>
+                <td>@food.Price</td>
+                <td>@food.Description</td>
+                <td>@food.Ingredients</td>
+                <td>@categoryList.First(x => x.Value == food.FoodItemCategoryId.ToString()).Text</td>
+                <td>
+                    <i class="fas fa-edit" id="@food.Id" onclick="app.main.foodItem.toggleEditFoodItem(event)"></i>
+                    <i id="@food.Id" class="far fa-trash-alt" onclick="app.main.foodItem.deleteFoodItem(event)"></i>
+                </td>
+            </tr>
+
+
+    @*<div>
             <form id="foodItemForm-@food.Id" asp-area="Administration" asp-controller="FoodItem" asp-action="EditFoodItem" method="post">
                 <input value="@food.Id" asp-for="Id" style="display:none" />
 
@@ -35,10 +57,9 @@
 
                 <label>@food.Ingredients</label>
                 <input hidden value="@food.Ingredients" asp-for="Ingredients" />
-                
+
                 <label>Category:</label>
                 <label>@categoryList.First(x=> x.Value == food.FoodItemCategoryId.ToString()).Text</label>
-                <select id="foodCategoriesSelect-@food.Id" asp-for="FoodItemCategoryId" asp-items="categoryList" style="display:none"></select>
 
                 <div id="secondButtonRow-@food.Id" style="display:none;">
                     <button type="submit">Submit</button>
@@ -50,12 +71,13 @@
                 <button value="@food.Id" onclick="app.main.foodItem.deleteFoodItem(event)">&#10006;</button>
             </div>
 
-        </div>
+        </div>*@
 
+
+        }
 
     }
-
-}
+</table>
 
 
 <form id="addFoodItemForm" class="w3-modal">
@@ -85,24 +107,24 @@
             </div>
             @if (categoryList.Any())
             {
-                <div>
-                    <label>Food Category</label>
-                    <select asp-for="FoodItemCategoryId" asp-items="foodItemCategories"></select>
-                    <span asp-validation-for="FoodItemCategoryId"></span>
-                </div>
+            <div>
+                <label>Food Category</label>
+                <select asp-for="FoodItemCategoryId" asp-items="foodItemCategories"></select>
+                <span asp-validation-for="FoodItemCategoryId"></span>
+            </div>
 
             }
             else
             {
+            <div>
+                <label>Food Category</label>
+                <input type="hidden" asp-for="FoodItemCategoryId" />
+                <a type="button" asp-area="Administration" asp-controller="FoodItemCategory" asp-action="Index">You need to add a category TODO</a>
                 <div>
-                    <label>Food Category</label>
-                    <input type="hidden" asp-for="FoodItemCategoryId" />
-                    <a type="button" asp-area="Administration" asp-controller="FoodItemCategory" asp-action="Index">You need to add a category TODO</a>
-                    <div>
-                        <span asp-validation-for="FoodItemCategoryId"></span>
+                    <span asp-validation-for="FoodItemCategoryId"></span>
 
-                    </div>
                 </div>
+            </div>
             }
         </div>
         <button type="button" onclick="app.main.foodItem.addFoodItem()" class="w3-button w3-round w3-green w3-display-bottomright">Add</button>

@@ -98,12 +98,12 @@ body {
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
+    width: 250px;
     position: fixed;
     height: 100%;
     overflow: auto;
-    background-color: lightgray;
+    background-color: #c8ccce;
+    border-radius: 5px;
 }
 
     /* Sidebar links */
@@ -112,6 +112,8 @@ body {
         color: black;
         padding: 16px;
         text-decoration: none;
+        text-align: center;
+        border: 1px solid #bdc6c7 !important;
     }
 
         /* Active/current link */
@@ -128,15 +130,24 @@ body {
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
-    margin-left: 200px;
+    margin-left: 250px;
     padding: 1px 16px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
     .sidebar {
-        display: none;
+        width: 100%;
+        height: auto;
+        position: relative;
     }
-    div.content {
-        margin-left: 0px;
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
     }
 }
