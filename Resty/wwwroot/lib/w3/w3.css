@@ -479,7 +479,8 @@ a {
     position: relative;
     padding: 0;
     outline: 0;
-    width: 600px
+    width: 550px;
+    border-radius: 10px;
 }
 
 .w3-bar {
@@ -759,7 +760,7 @@ a {
 @media (max-width:600px) {
     .w3-modal-content {
         margin: 0 10px;
-        width: auto !important
+        width: 350px !important
     }
 
     .w3-modal {
@@ -790,7 +791,7 @@ a {
 
 @media (max-width:768px) {
     .w3-modal-content {
-        width: 500px
+        width: 350px
     }
 
     .w3-modal {
@@ -800,7 +801,7 @@ a {
 
 @media (min-width:993px) {
     .w3-modal-content {
-        width: 900px
+        width: 550px
     }
 
     .w3-hide-large {

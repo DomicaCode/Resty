@@ -151,3 +151,17 @@ div.content {
         float: none;
     }
 }
+
+
+.formWrapper {
+    position: relative;
+    text-align: center;
+}
+
+.formLabel {
+    position: absolute;
+}
+
+.formInput {
+    margin-top: 3%;
+}
