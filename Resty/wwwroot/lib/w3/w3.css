@@ -247,7 +247,8 @@ a {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    display: table
+    display: table;
+    table-layout: fixed;
 }
 
 .w3-table-all {

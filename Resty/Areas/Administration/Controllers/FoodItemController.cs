@@ -7,6 +7,7 @@ using Resty.Service.Common.Services;
 using Resty.Web.Models.Food;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -75,11 +76,6 @@ namespace Resty.Web.Areas.Administration.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> EditFoodItem(FoodItemViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ArgumentException("Model wrong", nameof(model));
-            }
-
             var mappedModel = Mapper.Map<FoodItem>(model);
 
             if (await FoodItemService.EditFoodItemAsync(mappedModel))
@@ -96,7 +92,7 @@ namespace Resty.Web.Areas.Administration.Controllers
             var foodItemCategories = await FoodItemCategoryService.GetAllFoodItemCategoriesAsync();
 
             ViewBag.FoodItemCategories = new SelectList(foodItemCategories, "Id", "Name");
-            ViewBag.FoodItems = Mapper.Map<IList<FoodItemViewModel>>(foodItems);
+            ViewBag.FoodItems = (Mapper.Map<IList<FoodItemViewModel>>(foodItems)).OrderBy(x => x.SortOrder);
 
             return View();
         }

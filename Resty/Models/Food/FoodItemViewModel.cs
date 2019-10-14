@@ -19,10 +19,16 @@ namespace Resty.Web.Models.Food
         public string Ingredients { get; set; } = null!;
 
         [Required]
+        public bool IsEnabled { get; set; }
+
+        [Required]
         public string Name { get; set; } = null!;
 
         [Required]
         public decimal Price { get; set; }
+
+        [Required]
+        public int? SortOrder { get; set; }
 
         #endregion Properties
     }

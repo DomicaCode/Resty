@@ -11,6 +11,7 @@ namespace Resty.Model
         public ModelMappings()
         {
             CreateMap<IFoodItem, FoodItem>().ReverseMap();
+            CreateMap<FoodItem, FoodItem>().ReverseMap();
 
             CreateMap<IFoodItemCategory, FoodItemCategory>().ReverseMap();
         }

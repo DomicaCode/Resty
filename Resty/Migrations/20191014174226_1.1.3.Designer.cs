@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Resty.DAL.DBContext;
@@ -9,9 +10,10 @@ using Resty.DAL.DBContext;
 namespace Resty.Web.Migrations
 {
     [DbContext(typeof(RestyContext))]
-    partial class RestyContextModelSnapshot : ModelSnapshot
+    [Migration("20191014174226_1.1.3")]
+    partial class _113
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

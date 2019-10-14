@@ -56,17 +56,26 @@ export default class FoodItem {
         });
     }
 
-    toggleEditFoodItem() {
-        this.areInputsHidden = !this.areInputsHidden;
+    editFoodItem(event) {
 
-        const foodId = event.target.id;
+        const formId = $(event.target).parent().parent().attr('id');
+        const formValue = this.helpers.getModelTable(`#${formId}`);
 
-        $(`#foodCategoriesSelect-${foodId}`).toggle();
+        $.ajax({
+            type: 'POST',
+            url: '/Administration/FoodItem/EditFoodItem',
+            data: formValue,
+            dataType: 'application/json',
+            success: function () {
+                console.log('yes');
+                window.location.reload();
+            },
+            error: function () {
+                console.log('no');
+                window.location.reload();
+            }
+        });
 
-        $(`#foodItemForm-${foodId} :input`).prop('hidden', this.areInputsHidden);
-        $(`#foodItemForm-${foodId}`).find('label').toggle();
-
-        $(`#firstButtonRow-${foodId}`).toggle();
-        $(`#secondButtonRow-${foodId}`).toggle();
+        console.log(event.target);
     }
 }
