@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Resty.DAL.DBContext;
 using Resty.Infrastructure;
+using Resty.Infrastructure.SignalR;
 using System;
 
 namespace Resty.Web
@@ -68,6 +69,7 @@ namespace Resty.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("default", "{area=Global}/{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapHub<OrderHub>("/orderHub");
             });
         }
 
@@ -82,6 +84,8 @@ namespace Resty.Web
             });
 
             services.AddEntityFrameworkNpgsql();
+
+            services.AddSignalR();
 
             //var serviceProvider = new ServiceCollection()
             //    .AddLogging();

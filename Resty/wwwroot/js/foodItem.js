@@ -8,6 +8,7 @@ export default class FoodItem {
 
     showAddFoodItem() {
         document.getElementById('addFoodItemForm').style.display = 'block';
+        app.main.orderHub.connection.invoke("send");
     }
 
     hideAddFoodItem() {
