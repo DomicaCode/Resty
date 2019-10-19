@@ -10,37 +10,49 @@
     + New Food Category
 </button>
 
-@foreach (var foodCategory in ViewBag.FoodItemCategories)
-{
-    if (foodCategory != null)
-    {
-        <div>
-            <form id="foodItemCategoryForm-@foodCategory.Id" asp-area="Administration" asp-controller="FoodItemCategory" asp-action="EditFoodItemCategory" method="post">
-                <input value="@foodCategory.Id" asp-for="Id" style="display:none" />
+<div class="table-responsive">
+    <table class="table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
+        <thead>
+            <tr class="w3-blue">
+                <th>Name</th>
+                <th>SortOrder</th>
+                <th>Enabled?</th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var foodItemCategory in ViewBag.FoodItemCategories)
+        {
+            if (foodItemCategory != null)
+            {
+                <tr id="foodCategoryForm-@foodItemCategory.Id">
 
-                <label>@foodCategory.Name</label>
-                <input hidden value="@foodCategory.Name" asp-for="Name" />
+                    <td style="display: none">
+                        <input value="@foodItemCategory.Id" type="text" asp-for="Id" style="width: 100%" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                    </td>
 
-                <label>@foodCategory.SortOrder</label>
-                <input hidden value="@foodCategory.SortOrder" asp-for="SortOrder" />
+                    <td class="jqLabelInput" name="Name">@foodItemCategory.Name</td>
+                    <td style="display: none">
+                        <input value="@foodItemCategory.Name" type="text" asp-for="Name" style="width: 100%" placeholder="@foodItemCategory.Name" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                    </td>
 
-
-                <div id="secondButtonRow-@foodCategory.Id" style="display:none;">
-                    <button type="submit">Submit</button>
-                    <button type="button" id="@foodCategory.Id" onclick="app.main.foodItemCategory.toggleEditFoodItemCategory()">Cancel</button>
-                </div>
-            </form>
-            <div id="firstButtonRow-@foodCategory.Id">
-                <button class="btn btn-primary" id="@foodCategory.Id" onclick="app.main.foodItemCategory.toggleEditFoodItemCategory()">Edit</button>
-                <button value="@foodCategory.Id" onclick="app.main.foodItemCategory.deleteFoodItemCategory(event)">&#10006;</button>
-            </div>
-
-        </div>
+                    <td class="jqLabelInput">@foodItemCategory.SortOrder</td>
+                    <td style="display: none">
+                        <input value="@foodItemCategory.SortOrder" type="text" asp-for="SortOrder" style="width: 100%" placeholder="@foodItemCategory.SortOrder" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                    </td>
 
 
-    }
+                    <td class="jqLabelInput"><input type="checkbox" @(foodItemCategory.IsEnabled ? "checked" : "") /></td>
 
-}
+                    <td>
+                        <i id="@foodItemCategory.Id" class="far fa-trash-alt" onclick="app.main.foodItemCategory.deleteFoodItemCategory(event)"></i>
+                    </td>
+                </tr>
+
+            }
+
+        }
+    </table>
+</div>
 
 
 <form id="addFoodItemCategoryForm" class="w3-modal">
@@ -48,17 +60,40 @@
         <div class="w3-container">
             <span onclick="app.main.foodItemCategory.hideAddFoodItemCategory()"
                   class="w3-button w3-display-topright">&times;</span>
-            <div>
-                <label>Name</label>
-                <input asp-for="Name" />
-                <span asp-validation-for="Name"></span>
+            <div class="form-group">
+                <label for="inputName">Name *</label>
+                <input asp-for="Name" type="text" class="form-control" id="inputName" placeholder="Name">
+                <span asp-validation-for="Name" class="invalid-feedback"></span>
             </div>
-            <div>
-                <label>Sort order</label>
-                <input asp-for="SortOrder" />
-                <span asp-validation-for="SortOrder"></span>
+            <div class="form-group">
+                <label for="inputSO">Sort Order *</label>
+                <input asp-for="SortOrder" type="text" class="form-control" id="inputSO" placeholder="Sort order">
+                <span asp-validation-for="SortOrder" class="invalid-feedback"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" name="IsEnabled" value="true" type="checkbox" id="isEnabled">
+                    <label class="form-check-label" for="isEnabled">
+                        Is the category enabled?
+                    </label>
+                </div>
             </div>
         </div>
         <button type="button" onclick="app.main.foodItemCategory.addFoodItemCategory()" class="w3-button w3-round w3-green w3-display-bottomright">Add</button>
     </div>
 </form>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.jqLabelInput').click(function (e) {
+                $(this).hide();
+
+                const nextTd = $(e.target).next();
+                nextTd.show();
+                nextTd.children(':first').focus();
+            });
+        });
+    </script>
+}

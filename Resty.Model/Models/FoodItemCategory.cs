@@ -8,6 +8,7 @@ namespace Resty.Model.Models
     {
         #region Properties
 
+        public bool IsEnabled { get; set; }
         public int SortOrder { get; set; }
 
         #endregion Properties

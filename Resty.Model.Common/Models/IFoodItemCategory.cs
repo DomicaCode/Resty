@@ -4,6 +4,7 @@
     {
         #region Properties
 
+        bool IsEnabled { get; set; }
         int SortOrder { get; set; }
 
         #endregion Properties

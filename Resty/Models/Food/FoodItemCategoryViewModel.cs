@@ -8,6 +8,9 @@ namespace Resty.Web.Models.Food
         #region Properties
 
         [Required]
+        public bool IsEnabled { get; set; }
+
+        [Required]
         public string Name { get; set; } = null!;
 
         [Required]

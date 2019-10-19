@@ -36,7 +36,7 @@ export default class FoodItemCategory {
     }
 
     deleteFoodItemCategory(event) {
-        const foodCategoryId = event.target.value;
+        const foodCategoryId = event.target.id;
 
         $.ajax({
             type: 'DELETE',
@@ -53,15 +53,26 @@ export default class FoodItemCategory {
         });
     }
 
-    toggleEditFoodItemCategory () {
-        this.areInputsHidden = !this.areInputsHidden;
+    editFoodItemCategory(event) {
 
-        const foodCategoryId = event.target.id;
+        const formId = $(event.target).parent().parent().attr('id');
+        const formValue = this.helpers.getModelTable(`#${formId}`);
 
-        $(`#foodItemCategoryForm-${foodCategoryId} :input`).prop('hidden', this.areInputsHidden);
-        $(`#foodItemCategoryForm-${foodCategoryId}`).find('label').toggle();
+        $.ajax({
+            type: 'POST',
+            url: '/Administration/FoodItemCategory/EditFoodItemCategory',
+            data: formValue,
+            dataType: 'application/json',
+            success: function () {
+                console.log('yes');
+                window.location.reload();
+            },
+            error: function () {
+                console.log('no');
+                window.location.reload();
+            }
+        });
 
-        $(`#firstButtonRow-${foodCategoryId}`).toggle();
-        $(`#secondButtonRow-${foodCategoryId}`).toggle();
+        console.log(event.target);
     }
 }
