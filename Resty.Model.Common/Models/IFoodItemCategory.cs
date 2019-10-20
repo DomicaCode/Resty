@@ -5,6 +5,7 @@
         #region Properties
 
         bool IsEnabled { get; set; }
+        string Name { get; set; }
         int SortOrder { get; set; }
 
         #endregion Properties

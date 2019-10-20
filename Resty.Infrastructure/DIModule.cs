@@ -25,14 +25,15 @@ namespace Resty.Infrastructure
 
             builder.RegisterType<FoodItemRepository>().As<IFoodItemRepository>();
             builder.RegisterType<FoodItemCategoryRepository>().As<IFoodItemCategoryRepository>();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
 
             #endregion Repositories
 
             #region Services
 
             builder.RegisterType<FoodItemService>().As<IFoodItemService>();
-
             builder.RegisterType<FoodItemCategoryService>().As<IFoodItemCategoryService>();
+            builder.RegisterType<OrderService>().As<IOrderService>();
 
             #endregion Services
 

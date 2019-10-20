@@ -17,6 +17,7 @@ namespace Resty.DAL.DBContext
 
         public DbSet<FoodItem> FoodItem { get; set; }
         public DbSet<FoodItemCategory> FoodItemCategory { get; set; }
+        public DbSet<Order> Order { get; set; }
 
         #endregion Properties
     }

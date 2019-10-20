@@ -7,7 +7,6 @@ namespace Resty.Model.Common.Models
         #region Properties
 
         Guid Id { get; set; }
-        string Name { get; set; }
 
         #endregion Properties
     }

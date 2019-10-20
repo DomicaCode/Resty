@@ -9,6 +9,7 @@ namespace Resty.Model.Models
         #region Properties
 
         public bool IsEnabled { get; set; }
+        public string Name { get; set; } = null!;
         public int SortOrder { get; set; }
 
         #endregion Properties

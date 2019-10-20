@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Resty.Model.Models;
 using Resty.Service.Common.Services;
+using Resty.Web.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace Resty.Web.Areas.Global.Controllers
@@ -9,25 +14,45 @@ namespace Resty.Web.Areas.Global.Controllers
     {
         #region Constructors
 
-        public MenuController(IFoodItemService foodItemService)
+        public MenuController(IFoodItemService foodItemService, IOrderService orderService, IMapper mapper)
         {
             FoodItemService = foodItemService;
+            OrderService = orderService;
+            Mapper = mapper;
         }
 
         #endregion Constructors
 
         #region Properties
 
+        public IMapper Mapper { get; }
         private IFoodItemService FoodItemService { get; }
+        private IOrderService OrderService { get; }
 
         #endregion Properties
 
         #region Methods
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> AddOrder(OrderViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new ArgumentException("Model invalid", nameof(model));
+            }
+
+            var mappedModel = Mapper.Map<Order>(model);
+
+            await OrderService.AddOrderAsync(mappedModel);
+
+            return new JsonResult(new { success = "true" });
+        }
+
         public async Task<IActionResult> Index()
         {
-            var foodItems = await FoodItemService.GetAllFoodItemsAsync();
-            return View(foodItems);
+            ViewBag.FoodItems = await FoodItemService.GetAllFoodItemsAsync();
+            return View();
         }
 
         #endregion Methods

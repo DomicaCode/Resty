@@ -1,13 +1,55 @@
 ﻿@{
     ViewData["Title"] = "Menu";
 }
-@model  IEnumerable<Resty.Model.Common.Models.IFoodItem>
-
+@model Resty.Web.Models.OrderViewModel
 MENU
 
-@foreach (var foodItem in Model)
+@foreach (var foodItem in ViewBag.FoodItems)
 {
-    <div>@foodItem.Name</div>
-    <div>@foodItem.Price</div>
-    <div>@foodItem.Ingredients</div>
+    if (foodItem != null)
+    {
+        <div>@foodItem.Name</div>
+        <div>@foodItem.Price</div>
+        <div>@foodItem.Ingredients</div>
+        <button id="@foodItem.Id" onclick="app.main.order.showAddOrder(event)">ORDER</button>
+    }
 }
+
+<form id="addOrderForm" class="w3-modal">
+    <div class="w3-modal-content">
+        <div class="w3-container">
+            <span onclick="app.main.order.hideAddOrder()"
+                  class="w3-button w3-display-topright" style="z-index: 4;">&times;</span>
+            <div class="form-row" style="margin-top:10px">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email *</label>
+                    <input asp-for="Email" class="form-control" id="inputEmail" placeholder="Email">
+                    <span asp-validation-for="Email" class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputAddress">Address *</label>
+                    <input asp-for="Address" class="form-control" id="inputAddress" placeholder="Address">
+                    <span asp-validation-for="Address" class="invalid-feedback"></span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputFullName">Full Name *</label>
+                    <input asp-for="FullName" type="text" class="form-control" id="inputFullName">
+                    <span asp-validation-for="FullName" class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputPhone">Phone Number *</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" id="inputPhone">
+                    <span asp-validation-for="PhoneNumber" class="invalid-feedback"></span>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="inputFloor">Floor *</label>
+                    <input asp-for="FloorNumber" type="number" class="form-control" id="inputFloor">
+                    <span asp-validation-for="FloorNumber" class="invalid-feedback"></span>
+                </div>
+            </div>
+        </div>
+        <button type="button" onclick="app.main.order.addOrder()" class="w3-button w3-round w3-blue w3-display-bottomright" style="margin-top:3%">Add</button>
+    </div>
+</form>

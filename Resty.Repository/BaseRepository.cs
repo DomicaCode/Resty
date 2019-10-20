@@ -88,10 +88,6 @@ namespace Resty.Repository
             {
                 return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == filter.Id);
             }
-            else if (!string.IsNullOrWhiteSpace(filter.Name))
-            {
-                return await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Name == filter.Name);
-            }
 
             return new TEntity();
         }

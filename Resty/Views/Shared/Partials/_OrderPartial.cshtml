@@ -1,0 +1,14 @@
+﻿@foreach (var order in ViewBag.Orders)
+{
+    if (order != null)
+    {
+        <div style="border:1px solid black">
+            <div>@order.Address</div>
+            <div>@order.PhoneNumber</div>
+            <div>@order.Email</div>
+
+            <label>FOOD: @order.FoodItem.Name</label>
+        </div>
+
+    }
+}

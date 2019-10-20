@@ -17,6 +17,7 @@ namespace Resty.Model.Models
         public Guid FoodItemCategoryId { get; set; }
         public string Ingredients { get; set; } = null!;
         public bool IsEnabled { get; set; }
+        public string Name { get; set; } = null!;
         public decimal Price { get; set; }
 
         public int SortOrder { get; set; }

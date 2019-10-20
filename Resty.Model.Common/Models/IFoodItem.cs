@@ -9,11 +9,9 @@ namespace Resty.Model.Common.Models
         string Description { get; set; }
 
         Guid FoodItemCategoryId { get; set; }
-
         string Ingredients { get; set; }
-
         bool IsEnabled { get; set; }
-
+        string Name { get; set; }
         decimal Price { get; set; }
 
         int SortOrder { get; set; }

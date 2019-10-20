@@ -7,15 +7,3 @@
 </div>
 
 <a asp-area="Administration" asp-controller="Admin" asp-action="Index">ADMIN</a>
-
-<div id="testermerstrer" style="display:none;">YOU UPLOADED NEW FOOD</div>
-
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            app.main.orderHub.connection.on("send", function () {
-                $('#testermerstrer').show();
-            });
-        });
-    </script>
-}
