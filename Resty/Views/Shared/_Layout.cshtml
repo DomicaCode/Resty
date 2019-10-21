@@ -10,14 +10,15 @@
         <link rel="stylesheet" href="~/lib/w3/w3.css">
         <link rel="stylesheet" href="~/lib/font-awesome/all.min.css">
         <link rel="stylesheet" href="~/css/app.css" />
+        <link rel="stylesheet" href="~/css/main.css" />
     </environment>
     <environment exclude="Development">
     </environment>
 </head>
-<body>
+<body style="background-color: #2b2b2b;">
     @await Component.InvokeAsync("Header")
     @await Component.InvokeAsync("Highlights")
-    <div class="container">
+    <div class="container" style="border: 2px solid white; background-color: black;">
         <div class="content mt-3">
             <main role="main" class="pb-3">
                 @RenderBody()

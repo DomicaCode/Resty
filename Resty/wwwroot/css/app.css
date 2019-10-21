@@ -51,7 +51,6 @@ body {
 .footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
     white-space: nowrap;
     /* Set the fixed height of the footer here */
     height: 60px;
@@ -130,7 +129,7 @@ body {
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
 div.content {
-    margin-left: 250px;
+    /*margin-left: 250px;*/
     padding: 1px 16px;
 }
 
