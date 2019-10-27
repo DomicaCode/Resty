@@ -21,7 +21,7 @@ export default class FoodItemCategory {
             $.ajax({
                 type: 'POST',
                 url: '/Administration/FoodItemCategory/AddFoodItemCategory',
-                data: JSON.stringify(formValue),
+                data: formValue,
                 dataType: 'application/json',
                 success: function () {
                     window.location.reload();

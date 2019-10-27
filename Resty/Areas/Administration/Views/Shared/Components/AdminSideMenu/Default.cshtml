@@ -1,6 +1,39 @@
-﻿<div class="sidebar">
-    <a asp-area="Administration" asp-controller="FoodItem" asp-action="Index">Food Items</a>
-    <a asp-area="Administration" asp-controller="FoodItemCategory" asp-action="Index">Food Item Categories</a>
-    <a href="">LINK3</a>
-    <a href="">LINK4</a>
-</div>
+﻿<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="Administration" asp-controller="Admin" asp-action="Index">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Resty Admin</div>
+    </a>
+
+    <hr class="sidebar-divider my-0">
+
+    <li class="nav-item active">
+        <a class="nav-link" asp-area="Administration" asp-controller="Admin" asp-action="Index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Administration" asp-controller="FoodItem" asp-action="Index">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Food Items</span>
+        </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Administration" asp-controller="FoodItemCategory" asp-action="Index">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Food Item Categories</span>
+        </a>
+    </li>
+    
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
