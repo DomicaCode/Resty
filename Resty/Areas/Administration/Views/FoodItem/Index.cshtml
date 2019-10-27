@@ -13,14 +13,15 @@
     }
 </style>
 
-<button onclick="app.main.foodItem.showAddFoodItem()"
-        class="w3-button w3-blue-gray w3-right">
-    + New Food
-</button>
 
-<div class="table-responsive">
-    <table class="table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
-        <thead>
+<div class="container-fluid">
+    <button onclick="app.main.foodItem.showAddFoodItem()"
+            class="w3-button w3-blue-gray w3-right">
+        + New Food
+    </button>
+    <div class="table-responsive">
+        <table class="table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
+            <thead>
             <tr class="w3-blue">
                 <th>Name</th>
                 <th>Price</th>
@@ -31,59 +32,60 @@
                 <th>Category</th>
                 <th></th>
             </tr>
-        </thead>
-        @foreach (var food in ViewBag.FoodItems)
-    {
-        if (food != null)
-        {
-        <tr id="foodForm-@food.Id">
+            </thead>
+            @foreach (var food in ViewBag.FoodItems)
+            {
+                if (food != null)
+                {
+                    <tr id="foodForm-@food.Id">
 
-            <td style="display: none">
-                <input value="@food.Id" type="text" asp-for="Id" style="width: 100%" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td style="display: none">
+                            <input value="@food.Id" type="text" asp-for="Id" style="width: 100%" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
-            <td class="jqLabelInput" name="Name">@food.Name</td>
-            <td style="display: none">
-                <input value="@food.Name" type="text" asp-for="Name" style="width: 100%" placeholder="@food.Name" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td class="jqLabelInput" name="Name">@food.Name</td>
+                        <td style="display: none">
+                            <input value="@food.Name" type="text" asp-for="Name" style="width: 100%" placeholder="@food.Name" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
 
 
-            <td class="jqLabelInput">@food.Price</td>
-            <td style="display: none">
-                <input value="@food.Price" type="text" asp-for="Price" style="width: 100%" placeholder="@food.Price" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td class="jqLabelInput">@food.Price</td>
+                        <td style="display: none">
+                            <input value="@food.Price" type="text" asp-for="Price" style="width: 100%" placeholder="@food.Price" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
-            <td class="jqLabelInput">@food.Description</td>
-            <td style="display: none">
-                <input value="@food.Description" type="text" asp-for="Description" style="width: 100%" placeholder="@food.Description" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td class="jqLabelInput">@food.Description</td>
+                        <td style="display: none">
+                            <input value="@food.Description" type="text" asp-for="Description" style="width: 100%" placeholder="@food.Description" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
-            <td class="jqLabelInput">@food.Ingredients</td>
-            <td style="display: none">
-                <input value="@food.Ingredients" type="text" asp-for="Ingredients" style="width: 100%" placeholder="@food.Ingredients" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td class="jqLabelInput">@food.Ingredients</td>
+                        <td style="display: none">
+                            <input value="@food.Ingredients" type="text" asp-for="Ingredients" style="width: 100%" placeholder="@food.Ingredients" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
-            <td class="jqLabelInput"><input type="checkbox" @(food.IsEnabled ? "checked" : "") /></td>
+                        <td class="jqLabelInput"><input type="checkbox" @(food.IsEnabled ? "checked" : "")/></td>
 
-            <td class="jqLabelInput">@food.SortOrder</td>
-            <td style="display: none">
-                <input value="@food.SortOrder" type="text" asp-for="SortOrder" style="width: 100%" placeholder="@food.SortOrder" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
+                        <td class="jqLabelInput">@food.SortOrder</td>
+                        <td style="display: none">
+                            <input value="@food.SortOrder" type="text" asp-for="SortOrder" style="width: 100%" placeholder="@food.SortOrder" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
 
-            <td class="jqLabelInput">@categoryList.First(x => x.Value == food.FoodItemCategoryId.ToString()).Text</td>
-            <td style="display: none">
-                <input value="@food.FoodItemCategoryId" type="text" asp-for="FoodItemCategoryId" style="width: 100%" placeholder="@food.FoodItemCategoryId" onfocusout="app.main.foodItem.editFoodItem(event)" />
-            </td>
-            <td>
-                <i id="@food.Id" class="far fa-trash-alt" onclick="app.main.foodItem.deleteFoodItem(event)"></i>
-            </td>
-        </tr>
+                        <td class="jqLabelInput">@categoryList.First(x => x.Value == food.FoodItemCategoryId.ToString()).Text</td>
+                        <td style="display: none">
+                            <input value="@food.FoodItemCategoryId" type="text" asp-for="FoodItemCategoryId" style="width: 100%" placeholder="@food.FoodItemCategoryId" onfocusout="app.main.foodItem.editFoodItem(event)"/>
+                        </td>
+                        <td>
+                            <i id="@food.Id" class="far fa-trash-alt" onclick="app.main.foodItem.deleteFoodItem(event)"></i>
+                        </td>
+                    </tr>
 
-        }
+                }
 
-    }
-    </table>
+            }
+        </table>
+    </div>
 </div>
 
 

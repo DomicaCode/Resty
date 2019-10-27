@@ -5,53 +5,54 @@
 }
 @model Resty.Web.Models.Food.FoodItemCategoryViewModel
 
-<button onclick="app.main.foodItemCategory.showAddFoodItemCategory()"
-        class="w3-button w3-dark-grey">
-    + New Food Category
-</button>
-
-<div class="table-responsive">
-    <table class="table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
-        <thead>
-            <tr class="w3-blue">
-                <th>Name</th>
-                <th>SortOrder</th>
-                <th>Enabled?</th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (var foodItemCategory in ViewBag.FoodItemCategories)
-        {
-            if (foodItemCategory != null)
-            {
-                <tr id="foodCategoryForm-@foodItemCategory.Id">
-
-                    <td style="display: none">
-                        <input value="@foodItemCategory.Id" type="text" asp-for="Id" style="width: 100%" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
-                    </td>
-
-                    <td class="jqLabelInput" name="Name">@foodItemCategory.Name</td>
-                    <td style="display: none">
-                        <input value="@foodItemCategory.Name" type="text" asp-for="Name" style="width: 100%" placeholder="@foodItemCategory.Name" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
-                    </td>
-
-                    <td class="jqLabelInput">@foodItemCategory.SortOrder</td>
-                    <td style="display: none">
-                        <input value="@foodItemCategory.SortOrder" type="text" asp-for="SortOrder" style="width: 100%" placeholder="@foodItemCategory.SortOrder" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
-                    </td>
-
-
-                    <td class="jqLabelInput"><input type="checkbox" @(foodItemCategory.IsEnabled ? "checked" : "") /></td>
-
-                    <td>
-                        <i id="@foodItemCategory.Id" class="far fa-trash-alt" onclick="app.main.foodItemCategory.deleteFoodItemCategory(event)"></i>
-                    </td>
+<div class="container-fluid">
+    <button onclick="app.main.foodItemCategory.showAddFoodItemCategory()"
+            class="w3-button w3-blue-gray w3-right">
+        + New Food Category
+    </button>
+    <div class="table-responsive">
+        <table class="table w3-border w3-bordered w3-striped w3-centered w3-hoverable">
+            <thead>
+                <tr class="w3-blue">
+                    <th>Name</th>
+                    <th>SortOrder</th>
+                    <th>Enabled?</th>
+                    <th></th>
                 </tr>
+            </thead>
+            @foreach (var foodItemCategory in ViewBag.FoodItemCategories)
+            {
+                if (foodItemCategory != null)
+                {
+                    <tr id="foodCategoryForm-@foodItemCategory.Id">
+
+                        <td style="display: none">
+                            <input value="@foodItemCategory.Id" type="text" asp-for="Id" style="width: 100%" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                        </td>
+
+                        <td class="jqLabelInput" name="Name">@foodItemCategory.Name</td>
+                        <td style="display: none">
+                            <input value="@foodItemCategory.Name" type="text" asp-for="Name" style="width: 100%" placeholder="@foodItemCategory.Name" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                        </td>
+
+                        <td class="jqLabelInput">@foodItemCategory.SortOrder</td>
+                        <td style="display: none">
+                            <input value="@foodItemCategory.SortOrder" type="text" asp-for="SortOrder" style="width: 100%" placeholder="@foodItemCategory.SortOrder" onfocusout="app.main.foodItemCategory.editFoodItemCategory(event)" />
+                        </td>
+
+
+                        <td class="jqLabelInput"><input type="checkbox" @(foodItemCategory.IsEnabled ? "checked" : "") /></td>
+
+                        <td>
+                            <i id="@foodItemCategory.Id" class="far fa-trash-alt" onclick="app.main.foodItemCategory.deleteFoodItemCategory(event)"></i>
+                        </td>
+                    </tr>
+
+                }
 
             }
-
-        }
-    </table>
+        </table>
+    </div>
 </div>
 
 
