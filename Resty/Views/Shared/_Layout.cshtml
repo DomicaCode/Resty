@@ -6,38 +6,84 @@
     <title>@ViewData["Title"] - Resty</title>
 
     <environment include="Development,Staging">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/lib/w3/w3.css">
         <link rel="stylesheet" href="~/lib/font-awesome/all.min.css">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="~/css/app.css" />
         <link rel="stylesheet" href="~/css/main.css" />
+
     </environment>
     <environment exclude="Development">
     </environment>
 </head>
-<body style="background-color: #2b2b2b;">
+<body>
     @await Component.InvokeAsync("Header")
-    @await Component.InvokeAsync("Highlights")
-    <div class="container" style="border: 2px solid white; background-color: black;">
-        <div class="content mt-3">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
+    @RenderBody()
 
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2019 - Resty - Privacy</>
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4 mb-5">
+                    <h3>About Us</h3>
+                    <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus et dolor blanditiis consequuntur ex voluptates perspiciatis omnis unde minima expedita.</p>
+                    <ul class="list-unstyled footer-link d-flex footer-social">
+                        <li><a href="#" class="p-2"><span class="fa fa-twitter"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-facebook"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-linkedin"></span></a></li>
+                        <li><a href="#" class="p-2"><span class="fa fa-instagram"></span></a></li>
+                    </ul>
+
+                </div>
+                <div class="col-md-5 mb-5">
+                    <div class="mb-5">
+                        <h3>Opening Hours</h3>
+                        <p><strong class="d-block">Sunday-Thursday</strong> 5AM - 10PM</p>
+                    </div>
+                    <div>
+                        <h3>Contact Info</h3>
+                        <ul class="list-unstyled footer-link">
+                            <li class="d-block">
+                                <span class="d-block">Address:</span>
+                                <span class="text-white">34 Street Name, City Name Here, United States</span>
+                            </li>
+                            <li class="d-block"><span class="d-block">Telephone:</span><span class="text-white">+1 242 4942 290</span></li>
+                            <li class="d-block"><span class="d-block">Email:</span><span class="text-white">info@yourdomain.com</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-5">
+                    <h3>Quick Links</h3>
+                    <ul class="list-unstyled footer-link">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                        <li><a href="#">Disclaimers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+
+                </div>
             </div>
-        </footer>
-    </div>
+            <div class="row">
+                <div class="col-12 text-md-center text-left">
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <environment include="Development,Staging">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script src="~/js/magnific-popup-options.js"></script>
+        <script src="~/js/owl.carousel.min.js"></script>
+        <script src="~/lib/jquery.waypoints.min.js"></script>
+        <script src="~/lib/jquery.magnific-popup.min.js"></script>
+        <script src="~/lib/popper.min.js"></script>
+        <script src="~/js/global.js" asp-append-version="true"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="~/dev-dist/app.js" asp-append-version="true"></script>
+        <script src="~/dev-dist/app.js" asp-append-version="true"></script>>
     </environment>
 
     @RenderSection("Scripts", required: false)

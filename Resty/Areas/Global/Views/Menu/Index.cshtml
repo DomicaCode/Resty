@@ -2,54 +2,206 @@
     ViewData["Title"] = "Menu";
 }
 @model Resty.Web.Models.OrderViewModel
-MENU
-
-@foreach (var foodItem in ViewBag.FoodItems)
-{
-    if (foodItem != null)
+@*@foreach (var foodItem in ViewBag.FoodItems)
     {
-        <div>@foodItem.Name</div>
-        <div>@foodItem.Price</div>
-        <div>@foodItem.Ingredients</div>
-        <button id="@foodItem.Id" onclick="app.main.order.showAddOrder(event)">ORDER</button>
+        if (foodItem != null)
+        {
+            <div>@foodItem.Name</div>
+            <div>@foodItem.Price</div>
+            <div>@foodItem.Ingredients</div>
+            <button id="@foodItem.Id" onclick="app.main.order.showAddOrder(event)">ORDER</button>
+        }
     }
-}
 
-<form id="addOrderForm" class="w3-modal">
-    <div class="w3-modal-content">
-        <div class="w3-container">
-            <span onclick="app.main.order.hideAddOrder()"
-                  class="w3-button w3-display-topright" style="z-index: 4;">&times;</span>
-            <div class="form-row" style="margin-top:10px">
-                <div class="form-group col-md-6">
-                    <label for="inputEmail">Email *</label>
-                    <input asp-for="Email" class="form-control" id="inputEmail" placeholder="Email">
-                    <span asp-validation-for="Email" class="invalid-feedback"></span>
+    <form id="addOrderForm" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+                <span onclick="app.main.order.hideAddOrder()"
+                      class="w3-button w3-display-topright" style="z-index: 4;">&times;</span>
+                <div class="form-row" style="margin-top:10px">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail">Email *</label>
+                        <input asp-for="Email" class="form-control" id="inputEmail" placeholder="Email">
+                        <span asp-validation-for="Email" class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputAddress">Address *</label>
+                        <input asp-for="Address" class="form-control" id="inputAddress" placeholder="Address">
+                        <span asp-validation-for="Address" class="invalid-feedback"></span>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="inputAddress">Address *</label>
-                    <input asp-for="Address" class="form-control" id="inputAddress" placeholder="Address">
-                    <span asp-validation-for="Address" class="invalid-feedback"></span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputFullName">Full Name *</label>
+                        <input asp-for="FullName" type="text" class="form-control" id="inputFullName">
+                        <span asp-validation-for="FullName" class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inputPhone">Phone Number *</label>
+                        <input asp-for="PhoneNumber" type="text" class="form-control" id="inputPhone">
+                        <span asp-validation-for="PhoneNumber" class="invalid-feedback"></span>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputFloor">Floor *</label>
+                        <input asp-for="FloorNumber" type="number" class="form-control" id="inputFloor">
+                        <span asp-validation-for="FloorNumber" class="invalid-feedback"></span>
+                    </div>
                 </div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="inputFullName">Full Name *</label>
-                    <input asp-for="FullName" type="text" class="form-control" id="inputFullName">
-                    <span asp-validation-for="FullName" class="invalid-feedback"></span>
+            <button type="button" onclick="app.main.order.addOrder()" class="w3-button w3-round w3-blue w3-display-bottomright" style="margin-top:3%">Add</button>
+        </div>
+    </form>*@
+
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/animate.css">
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
+
+<link rel="stylesheet" href="~/css/magnific-popup.css">
+
+
+<link rel="stylesheet" href="~/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="~/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/fonts/flaticons/font/flaticon.css">
+
+
+    <section class="home-slider-loop-false  inner-page owl-carousel">
+        <div class="slider-item" style="background-image: url('../images/4krestaurant2.jpg');">
+        
+            <div class="container">
+                <div class="row slider-text align-items-center justify-content-center">
+                    <div class="col-md-8 text-center col-sm-12 element-animate">
+                        <h1>Our Menu</h1>
+              
+                    </div>
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="inputPhone">Phone Number *</label>
-                    <input asp-for="PhoneNumber" type="text" class="form-control" id="inputPhone">
-                    <span asp-validation-for="PhoneNumber" class="invalid-feedback"></span>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="container">
+        <div id="restaurant-menu">
+            <div class="section-title text-center center">
+                <div class="overlay">
+                    <h2>Menu</h2>
+                    <hr>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
                 </div>
-                <div class="form-group col-md-2">
-                    <label for="inputFloor">Floor *</label>
-                    <input asp-for="FloorNumber" type="number" class="form-control" id="inputFloor">
-                    <span asp-validation-for="FloorNumber" class="invalid-feedback"></span>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="menu-section">
+                            <h2 class="menu-section-title">Breakfast & Starters</h2>
+                            <hr>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $35 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="menu-section">
+                            <h2 class="menu-section-title">Main Course</h2>
+                            <hr>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $45 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="menu-section">
+                            <h2 class="menu-section-title">Dinner</h2>
+                            <hr>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $45 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $350 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam.. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="menu-section">
+                            <h2 class="menu-section-title">Coffee & Drinks</h2>
+                            <hr>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $35 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-item-name"> Delicious Dish </div>
+                                <div class="menu-item-price"> $30 </div>
+                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <button type="button" onclick="app.main.order.addOrder()" class="w3-button w3-round w3-blue w3-display-bottomright" style="margin-top:3%">Add</button>
+
+
     </div>
-</form>

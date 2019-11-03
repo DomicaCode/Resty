@@ -1,52 +1,116 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800" rel="stylesheet">
 
-<div class="text-center">
-    <h1 class="display-4">NAME HERE</h1>
-</div>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="~/css/animate.css">
+<link rel="stylesheet" href="~/css/owl.carousel.min.css">
 
-<a asp-area="Administration" asp-controller="Admin" asp-action="Index">ADMIN</a>
+<link rel="stylesheet" href="~/css/magnific-popup.css">
 
-<div style="border-top: 1px solid gainsboro;">
-    <div style="margin-top: 5px; margin-bottom:5px">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-        Nulla sagittis ut eros vitae iaculis. <br />
-        Aliquam sit amet molestie nulla.<br />
-        Sed non urna sodales, malesuada ante vitae, lobortis sapien.<br />
-        Etiam elementum urna vitae sapien scelerisque commodo.<br />
-        Vivamus egestas, ex a dapibus tempor, libero ante porta nisl, id venenatis quam massa ac leo.<br />
-        Duis ut sodales nunc. Vivamus in vulputate sapien. Quisque congue est ac dapibus sodales.<br />
-        Praesent iaculis tincidunt mauris, a auctor metus efficitur eget.<br />
-        Aliquam a aliquet tellus, vitae consequat nulla. Sed eu pretium arcu, vitae consequat sapien.<br />
-        Donec sed fringilla orci. Cras efficitur sem et feugiat venenatis.<br />
+
+<link rel="stylesheet" href="~/fonts/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="~/fonts/fontawesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="~/fonts/flaticons/font/flaticon.css">
+
+
+<section class="home-slider owl-carousel">
+    <div class="slider-item" style="background-image: url('images/4krestaurant.jpg');">
+
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Resty casual dining</h1>
+                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In maximus fermentum augue a convallis.</p>
+                    <p><a href="#" class="btn btn-white btn-outline-white">Order now</a></p>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
-<div style="border-top: 1px solid gainsboro;">
-    <div style="margin-top: 5px; margin-bottom:5px">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-        Nulla sagittis ut eros vitae iaculis. <br />
-        Aliquam sit amet molestie nulla.<br />
-        Sed non urna sodales, malesuada ante vitae, lobortis sapien.<br />
-        Etiam elementum urna vitae sapien scelerisque commodo.<br />
-        Vivamus egestas, ex a dapibus tempor, libero ante porta nisl, id venenatis quam massa ac leo.<br />
-        Duis ut sodales nunc. Vivamus in vulputate sapien. Quisque congue est ac dapibus sodales.<br />
-        Praesent iaculis tincidunt mauris, a auctor metus efficitur eget.<br />
-        Aliquam a aliquet tellus, vitae consequat nulla. Sed eu pretium arcu, vitae consequat sapien.<br />
-        Donec sed fringilla orci. Cras efficitur sem et feugiat venenatis.<br />
+
+    <div class="slider-item" style="background-image: url('images/4krestaurant2.jpg');">
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Delecious Food</h1>
+                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi unde impedit, necessitatibus, soluta sit quam minima expedita atque corrupti reiciendis.</p>
+                    <p><a href="#" class="btn btn-white btn-outline-white">Order now</a></p>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
-<div style="border-top: 1px solid gainsboro;">
-    <div style="margin-top: 5px; margin-bottom:5px">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />
-        Nulla sagittis ut eros vitae iaculis. <br />
-        Aliquam sit amet molestie nulla.<br />
-        Sed non urna sodales, malesuada ante vitae, lobortis sapien.<br />
-        Etiam elementum urna vitae sapien scelerisque commodo.<br />
-        Vivamus egestas, ex a dapibus tempor, libero ante porta nisl, id venenatis quam massa ac leo.<br />
-        Duis ut sodales nunc. Vivamus in vulputate sapien. Quisque congue est ac dapibus sodales.<br />
-        Praesent iaculis tincidunt mauris, a auctor metus efficitur eget.<br />
-        Aliquam a aliquet tellus, vitae consequat nulla. Sed eu pretium arcu, vitae consequat sapien.<br />
-        Donec sed fringilla orci. Cras efficitur sem et feugiat venenatis.<br />
+
+</section>
+
+<section class="section bg-light element-animate">
+
+    <div class="clearfix mb-5 pb-5">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 text-center heading-wrap">
+                    <h2>Special items</h2>
+                    <span class="back-text-dark">Highlights</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="container">
+
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="sched d-block d-lg-flex">
+                    <div class="bg-image order-2" style="background-image: url('images/dishes_4.jpg');"></div>
+                    <div class="text order-1">
+                        <h3>Grilled Caesar salad, shaved reggiano</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto illo delectus...</p>
+                        <p class="text-primary h3">$12.00</p>
+                    </div>
+
+                </div>
+
+                <div class="sched d-block d-lg-flex">
+                    <div class="bg-image" style="background-image: url('images/dishes_1.jpg');"></div>
+                    <div class="text">
+                        <h3>Spicy Calamari and beans</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto illo delectus...</p>
+                        <p class="text-primary h3">$12.00</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="sched d-block d-lg-flex">
+                    <div class="bg-image order-2" style="background-image: url('images/dishes_2.jpg');"></div>
+                    <div class="text order-1"> 
+                        <h3>Bacon wrapped wild gulf prawns</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto illo delectus...</p>
+                        <p class="text-primary h3">$18.00</p>
+
+                    </div>
+
+                </div>
+
+                <div class="sched d-block d-lg-flex">
+                    <div class="bg-image" style="background-image: url('images/dishes_3.jpg');"></div>
+                    <div class="text">
+                        <h3>Seared ahi tuna fillet*, honey-ginger sauce</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto illo delectus...</p>
+                        <p class="text-primary h3">$16.00</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section> <!-- .section -->
+
+<div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#cf1d16" /></svg></div>
