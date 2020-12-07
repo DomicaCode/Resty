@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Menu";
 }
-@model Resty.Web.Models.OrderViewModel
+@model Resty.Web.Areas.Global.Controllers.MenuController.MenuIndexViewModel
 @*@foreach (var foodItem in ViewBag.FoodItems)
     {
         if (foodItem != null)
@@ -66,142 +66,64 @@
 <link rel="stylesheet" href="~/fonts/flaticons/font/flaticon.css">
 
 
-    <section class="home-slider-loop-false  inner-page owl-carousel">
-        <div class="slider-item" style="background-image: url('../images/4krestaurant2.jpg');">
-        
-            <div class="container">
-                <div class="row slider-text align-items-center justify-content-center">
-                    <div class="col-md-8 text-center col-sm-12 element-animate">
-                        <h1>Our Menu</h1>
-              
-                    </div>
-                </div>
-            </div>
+<section class="home-slider-loop-false  inner-page owl-carousel">
+    <div class="slider-item" style="background-image: url('../images/4krestaurant2.jpg');">
 
-        </div>
+        <div class="container">
+            <div class="row slider-text align-items-center justify-content-center">
+                <div class="col-md-8 text-center col-sm-12 element-animate">
+                    <h1>Our Menu</h1>
 
-    </section>
-
-    <div class="container">
-        <div id="restaurant-menu">
-            <div class="section-title text-center center">
-                <div class="overlay">
-                    <h2>Menu</h2>
-                    <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="menu-section">
-                            <h2 class="menu-section-title">Breakfast & Starters</h2>
-                            <hr>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $35 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="menu-section">
-                            <h2 class="menu-section-title">Main Course</h2>
-                            <hr>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $45 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="menu-section">
-                            <h2 class="menu-section-title">Dinner</h2>
-                            <hr>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $45 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $350 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam.. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <div class="menu-section">
-                            <h2 class="menu-section-title">Coffee & Drinks</h2>
-                            <hr>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $35 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                            <div class="menu-item">
-                                <div class="menu-item-name"> Delicious Dish </div>
-                                <div class="menu-item-price"> $30 </div>
-                                <div class="menu-item-description"> Lorem ipsum dolor sit amet, consectetur adipiscing elit, duis sed dapibus leo nec ornare diam. </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-
 
     </div>
+
+</section>
+
+<div class="container">
+    <div id="restaurant-menu">
+        <div class="section-title text-center center">
+            <div class="overlay">
+                <h2>Menu</h2>
+                <hr>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit duis sed.</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                @if (Model?.FoodItems?.Any() ?? false)
+                {
+                    @foreach (var foodItemCategory in Model.FoodItems)
+                    {
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="menu-section">
+                                <h2 class="menu-section-title">@foodItemCategory.Key.Name</h2>
+                                <hr>
+                                @foreach (var foodItem in foodItemCategory)
+                                {
+                                    <div class="menu-item">
+                                        <div class="menu-item-name"> @foodItem.Name </div>
+                                        <div class="menu-item-price"> $@foodItem.Price </div>
+                                        <div class="menu-item-description"> @foodItem.Description </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="menu-section">
+                            No food
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</div>

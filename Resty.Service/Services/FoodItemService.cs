@@ -12,9 +12,10 @@ namespace Resty.Service.Services
     {
         #region Constructors
 
-        public FoodItemService(IFoodItemRepository foodItemRepository)
+        public FoodItemService(IFoodItemRepository foodItemRepository, IFoodItemCategoryRepository foodItemCategoryRepository)
         {
             FoodItemRepository = foodItemRepository;
+            FoodItemCategoryRepository = foodItemCategoryRepository;
         }
 
         #endregion Constructors
@@ -22,6 +23,7 @@ namespace Resty.Service.Services
         #region Properties
 
         private IFoodItemRepository FoodItemRepository { get; }
+        private IFoodItemCategoryRepository FoodItemCategoryRepository { get; }
 
         #endregion Properties
 
@@ -44,8 +46,7 @@ namespace Resty.Service.Services
         /// <returns></returns>
         public async Task<bool> DeleteFoodItemAsync(Guid foodId)
         {
-            await FoodItemRepository.DeleteAsync(foodId);
-            return await FoodItemRepository.DeleteAsync(foodId);
+            return await FoodItemRepository.DeleteAsync(foodId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Resty.Service.Services
         /// <returns></returns>
         public async Task<bool> EditFoodItemAsync(FoodItem model)
         {
-            return await FoodItemRepository.EditAsync(model);
+            return await FoodItemRepository.EditAsync(model).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -67,6 +68,28 @@ namespace Resty.Service.Services
             return await FoodItemRepository.GetAllAsync();
         }
 
+        public async Task<IList<FoodItem>> GetAllFoodItemsAsync(string embed = "")
+        {
+
+            var foodItems = await FoodItemRepository.GetAllAsync().ConfigureAwait(false);
+
+            if (embed.Equals(nameof(FoodItem.FoodItemCategory)))
+            {
+                foreach (var foodItem in foodItems)
+                {
+                    var category = await FoodItemCategoryRepository.GetAsync(new GenericFilter { Id = foodItem.FoodItemCategoryId });
+
+                    if(category is null)
+                        continue;
+
+                    foodItem.FoodItemCategory = category;
+
+                }
+            }
+
+            return foodItems;
+        }
+
         /// <summary>
         /// Gets filtered food item async
         /// </summary>
@@ -74,7 +97,7 @@ namespace Resty.Service.Services
         /// <returns></returns>
         public async Task<FoodItem> GetFoodItemAsync(GenericFilter filter)
         {
-            return await FoodItemRepository.GetAsync(filter);
+            return await FoodItemRepository.GetAsync(filter).ConfigureAwait(false);
         }
 
         #endregion Methods

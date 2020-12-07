@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Resty.Model.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Resty.DAL.DBContext
 {

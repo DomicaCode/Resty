@@ -20,6 +20,8 @@ namespace Resty.Service.Common.Services
 
         Task<FoodItem> GetFoodItemAsync(GenericFilter filter);
 
+        Task<IList<FoodItem>> GetAllFoodItemsAsync(string embed);
+
         #endregion Methods
     }
 }

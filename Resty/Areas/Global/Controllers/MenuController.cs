@@ -5,6 +5,8 @@ using Resty.Model.Models;
 using Resty.Service.Common.Services;
 using Resty.Web.Models;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Resty.Web.Areas.Global.Controllers
@@ -44,15 +46,27 @@ namespace Resty.Web.Areas.Global.Controllers
 
             var mappedModel = Mapper.Map<Order>(model);
 
-            await OrderService.AddOrderAsync(mappedModel);
+            await OrderService.AddOrderAsync(mappedModel).ConfigureAwait(false);
 
             return new JsonResult(new { success = "true" });
         }
 
         public async Task<IActionResult> Index()
         {
-            ViewBag.FoodItems = await FoodItemService.GetAllFoodItemsAsync();
-            return View();
+            var foodItems = await FoodItemService.GetAllFoodItemsAsync("FoodItemCategory").ConfigureAwait(false);
+
+            var groupedItems = foodItems.GroupBy(fi => fi.FoodItemCategory).ToArray();
+
+            return View(new MenuIndexViewModel
+            {
+                FoodItems = groupedItems
+            });
+        }
+
+
+        public class MenuIndexViewModel
+        {
+            public IGrouping<FoodItemCategory, FoodItem>[] FoodItems { get; set; }
         }
 
         #endregion Methods
